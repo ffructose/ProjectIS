@@ -8,4 +8,8 @@ module.exports = {
             filename: 'index.html',
         }),
     ],
+    devServer:{
+        watchFiles: path.join(__dirname,'src'),
+        port: 9000,
+    },
 };
