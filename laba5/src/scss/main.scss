@@ -1,0 +1,8 @@
+$font-size: 1rem;
+$font-color: black;
+$body-color: pink;
+html{
+    font-size: $font-size;
+    color: $font-color;
+    background-color: $body-color;
+}
