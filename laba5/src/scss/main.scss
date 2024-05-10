@@ -1,8 +1,65 @@
-$font-size: 1rem;
-$font-color: black;
-$body-color: pink;
+//----------------------КОЛЬОРИ--------------------\\
+$black: #0C1113;
+$green: #262617;
+$yellow: #FFF731;
+$white: #FFFFFF;
+$gray: #717273;
+
+
+//----------------------РОЗМІРИ--------------------\\
+$width:1440px;
+$header-height:1024px;
+$footer-height:512px;
+$content-height: 2048px ;
+
+//----------------------ШРИФТИ--------------------\\
+$h1-font-size: 70px;
+$h2-font-size: 50px;
+$h3-font-size: 30px;
+$p-font-size: 20px;
+$font-family: 'Open Sans';
+$font-style: normal;
+
+//----------------------ВІДСТУПИ--------------------\\
+$margin: 100px;
+
+
+//----------------------ІНШЕ--------------------\\
 html{
-    font-size: $font-size;
-    color: $font-color;
-    background-color: $body-color;
+    font-family: $font-family;
+    font-size: $p-font-size;
+    background-color: $black;
+    color: $white;
+}
+
+body{
+    max-width: $width;
+    margin: auto;
+    text-align: center;
+}
+
+header, main, footer {
+    border: 2px inset $yellow;
+}
+
+h1{
+    font-size: $h2-font-size;
+    font-weight: 800;
+}
+
+h3{
+    font-size: $h3-font-size;
+    font-weight: 800;
+}
+
+header{
+    height: $header-height;
+}
+
+footer{
+    height: $footer-height;
+}
+
+main {
+    height: $content-height;
 }

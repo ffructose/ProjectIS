@@ -1,0 +1,41 @@
+/*!*******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  \*******************************************************************************************************************************************************/
+html {
+  font-family: "Open Sans";
+  font-size: 20px;
+  background-color: #0C1113;
+  color: #FFFFFF;
+}
+
+body {
+  max-width: 1440px;
+  margin: auto;
+  text-align: center;
+}
+
+header, main, footer {
+  border: 2px inset #FFF731;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+header {
+  height: 1024px;
+}
+
+footer {
+  height: 512px;
+}
+
+main {
+  height: 2048px;
+}

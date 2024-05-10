@@ -1,11 +1,9 @@
-doctype html 
-html(lang='ua')
+doctype
+html(lang='en')
     head
         meta(charset='utf-8')
-        title='Webpack'
-    body 
-        h1 File created via Pug 
-        h2 thats list 
-        ul 
-        li el1 
-        li el2
+        title= 'Webpack'
+    body
+    include header.pug
+    include content.pug
+    include footer.pug
