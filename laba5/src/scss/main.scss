@@ -1,35 +1,36 @@
-//----------------------КОЛЬОРИ--------------------\\
+//----------------------КОЛЬОРИ--------------------
 $black: #0C1113;
-$green: #262617;
-$yellow: #FFF731;
+$pink: rgba(255, 51, 88, 1);
+$yellow: rgba(255, 240, 198, 1);
+$dark-yellow: rgba(255, 199, 0, 1);
 $white: #FFFFFF;
-$gray: #717273;
 
 
-//----------------------РОЗМІРИ--------------------\\
+
+//----------------------РОЗМІРИ--------------------
 $width:1440px;
-$header-height:1024px;
-$footer-height:512px;
-$content-height: 2048px ;
+$header-height:200px;
+$footer-height:200px;
+$content-height: 500px ;
 
-//----------------------ШРИФТИ--------------------\\
+//----------------------ШРИФТИ--------------------
 $h1-font-size: 70px;
 $h2-font-size: 50px;
 $h3-font-size: 30px;
 $p-font-size: 20px;
-$font-family: 'Open Sans';
+$font-family: 'Fredoka One';
 $font-style: normal;
 
-//----------------------ВІДСТУПИ--------------------\\
+//----------------------ВІДСТУПИ------------------
 $margin: 100px;
 
 
-//----------------------ІНШЕ--------------------\\
+//----------------------ІНШЕ----------------------
 html{
     font-family: $font-family;
     font-size: $p-font-size;
-    background-color: $black;
-    color: $white;
+    background-color: $yellow;
+    color: $pink;
 }
 
 body{
