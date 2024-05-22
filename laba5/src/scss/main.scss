@@ -5,20 +5,21 @@ $yellow: rgba(255, 240, 198, 1);
 $dark-yellow: rgba(255, 199, 0, 1);
 $white: #FFFFFF;
 
-
-
-//----------------------РОЗМІРИ--------------------
-$width:1440px;
-$header-height:200px;
-$footer-height:200px;
-$content-height: 500px ;
-
 //----------------------ШРИФТИ--------------------
+@font-face {
+    font-family: 'Fredoka';
+    src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/fredoka/static/Fredoka-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Mukta";
+    src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/mukta/Mukta-Regular.ttf);
+}
+
 $h1-font-size: 70px;
 $h2-font-size: 50px;
 $h3-font-size: 30px;
 $p-font-size: 20px;
-$font-family: 'Fredoka One';
 $font-style: normal;
 
 //----------------------ВІДСТУПИ------------------
@@ -26,41 +27,13 @@ $margin: 100px;
 
 
 //----------------------ІНШЕ----------------------
-html{
-    font-family: $font-family;
-    font-size: $p-font-size;
+html {
+    font-family: "Mukta";
+    font-size: 24;
     background-color: $yellow;
     color: $pink;
 }
 
-body{
-    max-width: $width;
-    margin: auto;
-    text-align: center;
-}
-
-header, main, footer {
-    border: 2px inset $yellow;
-}
-
-h1{
-    font-size: $h2-font-size;
-    font-weight: 800;
-}
-
-h3{
-    font-size: $h3-font-size;
-    font-weight: 800;
-}
-
-header{
-    height: $header-height;
-}
-
-footer{
-    height: $footer-height;
-}
-
-main {
-    height: $content-height;
+body {
+    max-width: 100%;
 }

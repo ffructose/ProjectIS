@@ -2,10 +2,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
   \*******************************************************************************************************************************************************/
 html {
-  font-family: "Open Sans";
+  font-family: "Fredoka One";
   font-size: 20px;
-  background-color: #0C1113;
-  color: #FFFFFF;
+  background-color: rgb(255, 240, 198);
+  color: rgb(255, 51, 88);
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 
 header, main, footer {
-  border: 2px inset #FFF731;
+  border: 2px inset rgb(255, 240, 198);
 }
 
 h1 {
@@ -29,13 +29,13 @@ h3 {
 }
 
 header {
-  height: 1024px;
+  height: 200px;
 }
 
 footer {
-  height: 512px;
+  height: 200px;
 }
 
 main {
-  height: 2048px;
+  height: 500px;
 }

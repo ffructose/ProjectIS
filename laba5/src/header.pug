@@ -1,2 +1,29 @@
-header 
-    h1 header
+a(name="header")
+header
+  .header-box
+    .logo
+      img(src=require('./photo/logo.png') alt="Yumico Bakery Logo")
+    nav.navbar
+      ul.nav-list
+        li.nav-item
+          a(href="#") MAIN
+        li.nav-item
+          a(href="#") CATALOGUE
+        li.nav-item
+          a(href="#") CUSTOM
+        li.nav-item
+          a(href="#") ABOUT US
+    .main-icons
+      a(href="#")
+        img(src=require('./photo/heartIcon.png') alt="Favorites Icon")
+      a(href="#")
+        img(src=require('./photo/accountIcon.png') alt="User Icon")
+      a(href="#")
+        img(src=require('./photo/cartIcon.png') alt="Shopping Cart Icon")
+    .help-icons
+      a(href="#")
+        img(src=require('./photo/languageIcon.png') alt="Language Icon")
+      a(href="#")
+        img(src=require('./photo/chatIcon.png') alt="Comments Icon")
+.headerWave
+  img(src=require('./photo/header-wave.svg') alt="Header Wave")

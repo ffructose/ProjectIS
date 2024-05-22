@@ -1,0 +1,289 @@
+//----------------------КОЛЬОРИ--------------------
+$black: #0C1113;
+$pink: rgba(255, 51, 88, 1);
+$yellow: rgba(255, 240, 198, 1);
+$dark-yellow: rgba(255, 199, 0, 1);
+$white: #FFFFFF;
+
+//----------------------ШРИФТИ--------------------
+@font-face {
+  font-family: 'Fredoka';
+  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/fredoka/static/Fredoka-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Mukta";
+  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/mukta/Mukta-Regular.ttf);
+}
+
+
+footer {
+
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-color: $pink;
+  margin-bottom: 0px;
+}
+
+.footerWave {
+  width: 100%;
+  margin-bottom: -5px;
+
+  img {
+    width: 100%
+  }
+}
+
+/* ---------------Телефон--------------- */
+@media (max-width: 425px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+    margin-bottom: 10px;
+    color: white;
+
+
+    .logo {
+      grid-area: 2/1/4/2;
+
+      img {
+        height: 80px;
+      }
+    }
+
+    .address {
+      grid-area: 2/2/3/5;
+      font-size: 15px;
+      color: white;
+      justify-self: end;
+      align-self: end;
+    }
+
+    .navbar {
+      margin-top: 10px;
+      grid-area: 1/1/2/5;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 10px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .contact {
+      justify-self: end;
+      grid-area: 3/2/4/4;
+      font-size: 15px;
+    }
+
+    .main-icons {
+      grid-area: 3/4/4/5;
+      display: flex;
+      align-items: center;
+      align-self: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+
+        img {
+          width: 35px;
+          height: 35px;
+        }
+
+
+      }
+    }
+
+  }
+}
+
+/* ---------------ПЛАНШЕТ--------------- */
+@media (max-width: 1024px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+    margin-bottom: 10px;
+    color: white;
+
+
+    .logo {
+      grid-area: 1/1/4/2;
+
+      img {
+        height: 130px;
+      }
+    }
+
+    .address {
+      grid-area: 4/1/5/3;
+      font-size: 20px;
+      color: white;
+    }
+
+    .navbar {
+      grid-area: 1/2/3/5;
+      align-self: end;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 30px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .contact {
+      grid-area: 4/3/5/4;
+      font-size: 20px;
+    }
+
+    .main-icons {
+      grid-area: 3/4/5/5;
+      display: flex;
+      align-items: center;
+      align-self: flex-end;
+      justify-self: end;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+
+      }
+    }
+
+  }
+}
+
+/* ---------------КОМП--------------- */
+@media (min-width: 1024px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    justify-content: space-between;
+    width: 1024px;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+    margin-bottom: 10px;
+    color: white;
+
+
+    .logo {
+      grid-area: 1/1/4/2;
+
+      img {
+        height: 180px;
+      }
+    }
+
+    .address {
+      grid-area: 4/1/5/3;
+      font-size: 24px;
+      color: white;
+    }
+
+    .navbar {
+      grid-area: 1/2/3/5;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 60px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .contact {
+      grid-area: 4/3/5/4;
+      font-size: 24px;
+    }
+
+    .main-icons {
+      grid-area: 3/4/5/5;
+      display: flex;
+      align-items: center;
+      align-self: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+
+      }
+    }
+
+  }
+}

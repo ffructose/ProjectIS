@@ -1,6 +1,12 @@
+import './scss/reset.scss'
 import './scss/main.scss'
-function component(text) {
-    const element = document.createElement('h1');
-    element.textContent = text;
-    return element;
-}
+import './scss/header.scss'
+import './scss/content.scss'
+import './scss/footer.scss'
+//import './main.js'
+
+// function component(text) {
+//   const element = document.createElement('h1');
+//   element.textContent = text;
+//   return element;
+// }

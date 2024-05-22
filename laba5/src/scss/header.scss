@@ -1,0 +1,287 @@
+//----------------------КОЛЬОРИ--------------------
+$black: #0C1113;
+$pink: rgba(255, 51, 88, 1);
+$yellow: rgba(255, 240, 198, 1);
+$dark-yellow: rgba(255, 199, 0, 1);
+$white: #FFFFFF;
+
+//----------------------ШРИФТИ--------------------
+@font-face {
+  font-family: 'Fredoka';
+  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/fredoka/static/Fredoka-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Mukta";
+  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/mukta/Mukta-Regular.ttf);
+}
+
+
+header {
+
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-color: $pink;
+}
+
+.headerWave {
+  width: 100%;
+
+  img {
+    width: 100%
+  }
+}
+
+/* ---------------Телефон--------------- */
+@media (min-width: 100px) {
+  .header-box {
+    padding-top: 5px;
+    display: grid;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+
+    .logo {
+      grid-area: 1/1/3/2;
+
+      img {
+        height: 50px;
+      }
+    }
+
+    .navbar {
+      grid-area: 2/2/3/4;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 8px;
+          margin-right: 8px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .main-icons {
+      grid-area: 1/3/2/4;
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    .help-icons {
+      justify-self: end;
+      grid-area: 1/2/2/3;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0px;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* ---------------ПЛАНШЕТ--------------- */
+@media (min-width: 425px) {
+  .header-box {
+    padding-top: 15px;
+    display: grid;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+
+    .logo {
+      grid-area: 2/1/3/2;
+
+      img {
+        height: 80px;
+      }
+    }
+
+    .navbar {
+      grid-area: 2/2/3/3;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 10px;
+          margin-right: 10px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .main-icons {
+      grid-area: 2/3/3/4;
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    .help-icons {
+      justify-self: end;
+      grid-area: 1/1/2/4;
+      display: flex;
+      align-items: center;
+      margin-bottom: -20px;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
+
+
+/* ---------------КОМП--------------- */
+@media (min-width: 1024px) {
+  .header-box {
+    padding-top: 15px;
+    display: grid;
+    justify-content: space-between;
+    width: 1024px;
+    align-items: center;
+    align-content: center;
+    font-family: 'Fredoka';
+
+    .logo {
+      grid-area: 2/1/3/2;
+
+      img {
+        height: 100px;
+      }
+    }
+
+    .navbar {
+      grid-area: 2/2/3/3;
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .nav-item {
+          margin-left: 20px;
+          margin-right: 20px;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24px;
+
+            &:hover {
+              color: $yellow;
+            }
+          }
+        }
+      }
+    }
+
+    .main-icons {
+      grid-area: 2/3/3/4;
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 25px;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+
+
+      }
+    }
+
+    .help-icons {
+      justify-self: end;
+      grid-area: 1/1/2/4;
+      display: flex;
+      align-items: center;
+      margin-bottom: -20px;
+
+      a {
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+
+        img {
+          width: 24px;
+        }
+      }
+    }
+  }
+}
