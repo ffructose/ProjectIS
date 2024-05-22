@@ -6,15 +6,8 @@ $dark-yellow: rgba(255, 199, 0, 1);
 $white: #FFFFFF;
 
 //----------------------ШРИФТИ--------------------
-@font-face {
-  font-family: 'Fredoka';
-  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/fredoka/static/Fredoka-Regular.ttf);
-}
+//----------------------ШРИФТИ--------------------
 
-@font-face {
-  font-family: "Mukta";
-  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/mukta/Mukta-Regular.ttf);
-}
 
 
 footer {
@@ -36,8 +29,12 @@ footer {
   }
 }
 
+.address {
+  font-family: "Pacifico";
+}
+
 /* ---------------Телефон--------------- */
-@media (max-width: 425px) {
+@media (min-width: 100px) {
   .footer-box {
     padding-top: 0px;
     display: grid;
@@ -123,7 +120,7 @@ footer {
 }
 
 /* ---------------ПЛАНШЕТ--------------- */
-@media (max-width: 1024px) {
+@media (min-width: 425px) {
   .footer-box {
     padding-top: 0px;
     display: grid;

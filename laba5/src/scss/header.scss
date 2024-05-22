@@ -5,16 +5,7 @@ $yellow: rgba(255, 240, 198, 1);
 $dark-yellow: rgba(255, 199, 0, 1);
 $white: #FFFFFF;
 
-//----------------------ШРИФТИ--------------------
-@font-face {
-  font-family: 'Fredoka';
-  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/fredoka/static/Fredoka-Regular.ttf);
-}
 
-@font-face {
-  font-family: "Mukta";
-  src: url(D:/унік/ПроєктіС/5/ProjectIS/laba5/src/fonts/mukta/Mukta-Regular.ttf);
-}
 
 
 header {
@@ -26,13 +17,7 @@ header {
   background-color: $pink;
 }
 
-.headerWave {
-  width: 100%;
 
-  img {
-    width: 100%
-  }
-}
 
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {

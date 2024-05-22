@@ -1,7 +1,35 @@
+a(name="main")
 main 
-    h1 main
-    article 
-        section 
-            h2 YUMICO
-    article 
-        h2 super bakery
+    img(src=require('./photo/header-wave.svg') alt="Header Wave").headerWaveImg 
+    .main-box
+
+        .content
+            img(src=require('./photo/buildYourCake.png') alt="Build Your Own Cake").buildYourCake
+            button.order-button.myButton Go to Custom Order
+            .products
+                .product-card
+                    h3 Cupcake
+                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    p.price ₴198.00
+                    .favorite
+                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
+                    .cart
+                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
+                .product-card
+                    h3 Cupcake
+                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    p.price ₴198.00
+                    .favorite
+                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
+                    .cart
+                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
+                .product-card
+                    h3 Cupcake
+                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    p.price ₴198.00
+                    .favorite
+                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
+                    .cart
+                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
+
+        button.catalogue-button.myButton Go to Full Catalogue

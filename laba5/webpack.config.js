@@ -13,13 +13,31 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: path.join('fonts', '[name].[contenthash][ext]'),
+                },
+            },
+            {
                 test: /\.(png|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
             {
                 test: /\.svg$/,
                 type: 'asset/resource',
-                generator:{
+                generator: {
                     filename: path.join('icons', '[name].[contenthash][ext]'),
                 },
             },
@@ -63,17 +81,17 @@ module.exports = {
         watchFiles: path.join(__dirname, 'src'),
         port: 9000,
     },
-    optimization:{
-        minimizer:[
+    optimization: {
+        minimizer: [
             new ImageMinimizerPlugin({
-                minimizer:{
+                minimizer: {
                     implementation: ImageMinimizerPlugin.imageminMinify,
-                    options:{
-                        plugins:[
-                            ['gifsicle', {interlaced: true}],
-                            ['jpegtran', {progressive: true}],
-                            ['optipng', {optimizationLevel: 5}],
-                            ['svgo', {name: 'preset-default'}],
+                    options: {
+                        plugins: [
+                            ['gifsicle', { interlaced: true }],
+                            ['jpegtran', { progressive: true }],
+                            ['optipng', { optimizationLevel: 5 }],
+                            ['svgo', { name: 'preset-default' }],
                         ],
                     },
                 },
