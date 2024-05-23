@@ -6,30 +6,34 @@ main
         .content
             .title-text Your Cart
 
-            .products
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
+            .cart-list 
+                .cart-item
+                    span.item-name Cupcake "Honey"
+                    .item-image
+                        img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    input(type="number" value="1" min="1" ).item-amount 
+                    span.item-price ₴198.00
+                    .remove-item 
+                        button x
+                .cart-item
+                    span.item-name Cupcake "Honey"
+                    .item-image
+                        img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    input(type="number" value="1" min="1" ).item-amount 
+                    span.item-price ₴198.00
+                    .remove-item 
+                        button x
+                .cart-item
+                    span.item-name Cupcake "Honey"
+                    .item-image
+                        img(src=require('./photo/cupcake.png')  alt="Cupcake")
+                    input(type="number" value="1" min="1" ).item-amount 
+                    span.item-price ₴198.00
+                    .remove-item 
+                        button x
+                
 
-        button.catalogue-button.myButton Go to Full Catalogue
+            .result-box 
+                span.result-text SUMM TO PAYMENT:
+                span.result-price ₴198.00
+            button.cart-button.myButton Proceed to Checkout
