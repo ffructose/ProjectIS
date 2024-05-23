@@ -1,41 +1,1062 @@
 /*!*******************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/font.scss ***!
   \*******************************************************************************************************************************************************/
-html {
-  font-family: "Fredoka One";
-  font-size: 20px;
-  background-color: rgb(255, 240, 198);
-  color: rgb(255, 51, 88);
+@import url(https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Mukta:wght@200;300;400;500;600;700;800&family=Pacifico&display=swap);
+/*!********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/reset.scss ***!
+  \********************************************************************************************************************************************************/
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+          text-size-adjust: none;
+}
+
+footer, header, nav, section, main {
+  display: block;
 }
 
 body {
-  max-width: 1440px;
-  margin: auto;
-  text-align: center;
+  line-height: 1;
 }
 
-header, main, footer {
-  border: 2px inset rgb(255, 240, 198);
+ol, ul {
+  list-style: none;
 }
 
-h1 {
-  font-size: 50px;
-  font-weight: 800;
+blockquote, q {
+  quotes: none;
 }
 
-h3 {
-  font-size: 30px;
-  font-weight: 800;
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+/*!*******************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/main.scss ***!
+  \*******************************************************************************************************************************************************/
+html {
+  font-family: "Mukta";
+  font-size: 24;
+  background-color: rgb(255, 240, 198);
+  color: rgb(255, 51, 88);
+}
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/header.scss ***!
+  \*********************************************************************************************************************************************************/
+@charset "UTF-8";
 header {
-  height: 200px;
+  width: 100%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgb(255, 51, 88);
 }
 
-footer {
-  height: 200px;
+/* ---------------Телефон--------------- */
+@media (min-width: 100px) {
+  .header-box {
+    padding-top: 5px;
+    display: grid;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+  }
+  .header-box .logo {
+    grid-area: 1/1/3/2;
+  }
+  .header-box .logo img {
+    height: 50px;
+  }
+  .header-box .navbar {
+    grid-area: 2/2/3/4;
+  }
+  .header-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box .navbar .nav-list .nav-item {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .header-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .header-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .header-box .main-icons {
+    grid-area: 1/3/2/4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 25px;
+  }
+  .header-box .main-icons a img {
+    width: 20px;
+    height: 20px;
+  }
+  .header-box .help-icons {
+    justify-self: end;
+    grid-area: 1/2/2/3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 0px;
+  }
+  .header-box .help-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 15px;
+  }
+  .header-box .help-icons a img {
+    width: 20px;
+  }
 }
-
+/* ---------------ПЛАНШЕТ--------------- */
+@media (min-width: 425px) {
+  .header-box {
+    padding-top: 15px;
+    display: grid;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+  }
+  .header-box .logo {
+    grid-area: 2/1/3/2;
+  }
+  .header-box .logo img {
+    height: 80px;
+  }
+  .header-box .navbar {
+    grid-area: 2/2/3/3;
+  }
+  .header-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box .navbar .nav-list .nav-item {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .header-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .header-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .header-box .main-icons {
+    grid-area: 2/3/3/4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 25px;
+  }
+  .header-box .main-icons a img {
+    width: 20px;
+    height: 20px;
+  }
+  .header-box .help-icons {
+    justify-self: end;
+    grid-area: 1/1/2/4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: -20px;
+  }
+  .header-box .help-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 15px;
+  }
+  .header-box .help-icons a img {
+    width: 20px;
+  }
+}
+/* ---------------КОМП--------------- */
+@media (min-width: 1024px) {
+  .header-box {
+    padding-top: 15px;
+    display: grid;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 1024px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+  }
+  .header-box .logo {
+    grid-area: 2/1/3/2;
+  }
+  .header-box .logo img {
+    height: 100px;
+  }
+  .header-box .navbar {
+    grid-area: 2/2/3/3;
+  }
+  .header-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box .navbar .nav-list .nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .header-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .header-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .header-box .main-icons {
+    grid-area: 2/3/3/4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 25px;
+  }
+  .header-box .main-icons a img {
+    width: 24px;
+    height: 24px;
+  }
+  .header-box .help-icons {
+    justify-self: end;
+    grid-area: 1/1/2/4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: -20px;
+  }
+  .header-box .help-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 15px;
+  }
+  .header-box .help-icons a img {
+    width: 24px;
+  }
+}
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/content.scss ***!
+  \**********************************************************************************************************************************************************/
+@charset "UTF-8";
 main {
-  height: 500px;
+  width: 100%;
 }
+main .headerWaveImg {
+  width: 100%;
+  z-index: 1;
+  margin-top: -1px;
+}
+
+/* ---------------Телефон--------------- */
+@media (min-width: 100px) {
+  .myButton {
+    justify-self: center;
+    background-color: white;
+    border: 4px solid #ffc107;
+    border-radius: 25px;
+    padding: 5px 5px;
+    font-size: 15px;
+    color: #ffc107;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .myButton:hover {
+    background-color: #ffc107;
+    color: white;
+  }
+  .main-box {
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-family: "Fredoka";
+  }
+  .main-box .content {
+    display: grid;
+    width: 100%;
+  }
+  .main-box .content .buildYourCake {
+    width: 100%;
+    margin-top: -20px;
+    z-index: -1;
+  }
+  .main-box .content .buildYourCake img {
+    max-width: 100%;
+    height: auto;
+  }
+  .main-box .content .order-button {
+    margin-top: -20px;
+  }
+  .main-box .content .products {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  .main-box .content .products .product-card {
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 1px 2px 5px black;
+            box-shadow: 1px 2px 5px black;
+    padding: 5px;
+    display: grid;
+  }
+  .main-box .content .products .product-card img {
+    grid-area: 2/1/3/3;
+    width: 100px;
+    height: auto;
+  }
+  .main-box .content .products .product-card h3 {
+    grid-area: 1/1/2/2;
+    margin: 10px 0;
+    font-size: 15px;
+    color: black;
+  }
+  .main-box .content .products .product-card .price {
+    grid-area: 3/1/4/3;
+    font-size: 15px;
+    color: rgb(255, 51, 88);
+    margin: 10px 0;
+  }
+  .main-box .content .products .product-card .favorite {
+    grid-area: 1/2/2/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .favorite img {
+    width: 15px;
+    height: 10px;
+    cursor: pointer;
+  }
+  .main-box .content .products .product-card .cart {
+    grid-area: 3/2/4/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .cart img {
+    width: 15px;
+    height: 10px;
+    cursor: pointer;
+  }
+  .main-box .catalogue-button {
+    margin-top: 20px;
+  }
+}
+/* ---------------ПЛАНШЕТ--------------- */
+@media (min-width: 425px) {
+  .myButton {
+    justify-self: center;
+    background-color: white;
+    border: 4px solid #ffc107;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #ffc107;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .myButton:hover {
+    background-color: #ffc107;
+    color: white;
+  }
+  .main-box {
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-family: "Fredoka";
+  }
+  .main-box .content {
+    display: grid;
+    width: 100%;
+  }
+  .main-box .content .buildYourCake {
+    width: 100%;
+    margin-top: -50px;
+    z-index: -1;
+  }
+  .main-box .content .buildYourCake img {
+    max-width: 100%;
+    height: auto;
+  }
+  .main-box .content .order-button {
+    margin-top: -20px;
+  }
+  .main-box .content .products {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    gap: 45px;
+    margin-top: 80px;
+  }
+  .main-box .content .products .product-card {
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 5px 15px black;
+            box-shadow: 2px 5px 15px black;
+    padding: 10px;
+    display: grid;
+  }
+  .main-box .content .products .product-card img {
+    grid-area: 2/1/3/3;
+    width: 140px;
+    height: auto;
+  }
+  .main-box .content .products .product-card h3 {
+    grid-area: 1/1/2/2;
+    margin: 10px 0;
+    font-size: 20px;
+    color: black;
+  }
+  .main-box .content .products .product-card .price {
+    grid-area: 3/1/4/3;
+    font-size: 20px;
+    color: rgb(255, 51, 88);
+    margin: 10px 0;
+  }
+  .main-box .content .products .product-card .favorite {
+    grid-area: 1/2/2/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .favorite img {
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+  }
+  .main-box .content .products .product-card .cart {
+    grid-area: 3/2/4/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .cart img {
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+  }
+  .main-box .catalogue-button {
+    margin-top: 50px;
+  }
+}
+/* ---------------КОМП--------------- */
+@media (min-width: 1024px) {
+  .myButton {
+    justify-self: center;
+    background-color: white;
+    border: 4px solid #ffc107;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: #ffc107;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .myButton:hover {
+    background-color: #ffc107;
+    color: white;
+  }
+  .main-box {
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-family: "Fredoka";
+  }
+  .main-box .content {
+    display: grid;
+    width: 1024px;
+  }
+  .main-box .content .buildYourCake {
+    width: 100%;
+    margin-top: -90px;
+    z-index: -1;
+  }
+  .main-box .content .buildYourCake img {
+    max-width: 100%;
+    height: auto;
+  }
+  .main-box .content .order-button {
+    margin-top: -20px;
+  }
+  .main-box .content .products {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    gap: 80px;
+    margin-top: 80px;
+  }
+  .main-box .content .products .product-card {
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 5px 15px black;
+            box-shadow: 2px 5px 15px black;
+    padding: 15px;
+    display: grid;
+  }
+  .main-box .content .products .product-card img {
+    grid-area: 2/1/3/3;
+    width: 200px;
+    height: auto;
+  }
+  .main-box .content .products .product-card h3 {
+    grid-area: 1/1/2/2;
+    margin: 10px 0;
+    font-size: 24px;
+    color: black;
+  }
+  .main-box .content .products .product-card .price {
+    grid-area: 3/1/4/3;
+    font-size: 24px;
+    color: rgb(255, 51, 88);
+    margin: 10px 0;
+  }
+  .main-box .content .products .product-card .favorite {
+    grid-area: 1/2/2/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .favorite img {
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .main-box .content .products .product-card .cart {
+    grid-area: 3/2/4/3;
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 51, 88);
+    border-radius: 50%;
+  }
+  .main-box .content .products .product-card .cart img {
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .main-box .catalogue-button {
+    margin-top: 50px;
+  }
+}
+/*!*********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/footer.scss ***!
+  \*********************************************************************************************************************************************************/
+@charset "UTF-8";
+footer {
+  width: 100%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgb(255, 51, 88);
+  margin-bottom: 0px;
+}
+
+.footerWave {
+  width: 100%;
+  margin-bottom: -5px;
+}
+.footerWave img {
+  width: 100%;
+}
+
+.address {
+  font-family: "Pacifico";
+}
+
+/* ---------------Телефон--------------- */
+@media (min-width: 100px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+    margin-bottom: 10px;
+    color: white;
+  }
+  .footer-box .logo {
+    grid-area: 2/1/4/2;
+  }
+  .footer-box .logo img {
+    height: 80px;
+  }
+  .footer-box .address {
+    grid-area: 2/2/3/5;
+    font-size: 15px;
+    color: white;
+    justify-self: end;
+    align-self: end;
+  }
+  .footer-box .navbar {
+    margin-top: 10px;
+    grid-area: 1/1/2/5;
+  }
+  .footer-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-box .navbar .nav-list .nav-item {
+    margin-left: 10px;
+  }
+  .footer-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .footer-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .footer-box .contact {
+    justify-self: end;
+    grid-area: 3/2/4/4;
+    font-size: 15px;
+  }
+  .footer-box .main-icons {
+    grid-area: 3/4/4/5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    align-self: flex-end;
+  }
+  .footer-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 5px;
+  }
+  .footer-box .main-icons a img {
+    width: 35px;
+    height: 35px;
+  }
+}
+/* ---------------ПЛАНШЕТ--------------- */
+@media (min-width: 425px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+    margin-bottom: 10px;
+    color: white;
+  }
+  .footer-box .logo {
+    grid-area: 1/1/4/2;
+  }
+  .footer-box .logo img {
+    height: 130px;
+  }
+  .footer-box .address {
+    grid-area: 4/1/5/3;
+    font-size: 20px;
+    color: white;
+  }
+  .footer-box .navbar {
+    grid-area: 1/2/3/5;
+    align-self: end;
+  }
+  .footer-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-box .navbar .nav-list .nav-item {
+    margin-left: 30px;
+  }
+  .footer-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .footer-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .footer-box .contact {
+    grid-area: 4/3/5/4;
+    font-size: 20px;
+  }
+  .footer-box .main-icons {
+    grid-area: 3/4/5/5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    align-self: flex-end;
+    justify-self: end;
+  }
+  .footer-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 5px;
+  }
+  .footer-box .main-icons a img {
+    width: 50px;
+    height: 50px;
+  }
+}
+/* ---------------КОМП--------------- */
+@media (min-width: 1024px) {
+  .footer-box {
+    padding-top: 0px;
+    display: grid;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 1024px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    font-family: "Fredoka";
+    margin-bottom: 10px;
+    color: white;
+  }
+  .footer-box .logo {
+    grid-area: 1/1/4/2;
+  }
+  .footer-box .logo img {
+    height: 180px;
+  }
+  .footer-box .address {
+    grid-area: 4/1/5/3;
+    font-size: 24px;
+    color: white;
+  }
+  .footer-box .navbar {
+    grid-area: 1/2/3/5;
+  }
+  .footer-box .navbar .nav-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-box .navbar .nav-list .nav-item {
+    margin-left: 60px;
+  }
+  .footer-box .navbar .nav-list .nav-item a {
+    color: white;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .footer-box .navbar .nav-list .nav-item a:hover {
+    color: rgb(255, 240, 198);
+  }
+  .footer-box .contact {
+    grid-area: 4/3/5/4;
+    font-size: 24px;
+  }
+  .footer-box .main-icons {
+    grid-area: 3/4/5/5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    align-self: flex-end;
+  }
+  .footer-box .main-icons a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 25px;
+  }
+  .footer-box .main-icons a img {
+    width: 50px;
+    height: 50px;
+  }
+}
+/*!***********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/font.scss (1) ***!
+  \***********************************************************************************************************************************************************/
+
