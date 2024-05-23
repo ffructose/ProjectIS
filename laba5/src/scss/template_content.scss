@@ -15,16 +15,18 @@ main {
     }
 }
 
+
+
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {
     .myButton {
         justify-self: center;
         background-color: white;
-        border: 4px solid #ffc107;
+        border: 4px solid $dark-yellow;
         border-radius: 25px;
         padding: 5px 5px;
         font-size: 15px;
-        color: #ffc107;
+        color: $dark-yellow;
         text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
@@ -39,7 +41,7 @@ main {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-            background-color: #ffc107;
+            background-color: $dark-yellow;
             color: white;
         }
     }
@@ -156,11 +158,11 @@ main {
     .myButton {
         justify-self: center;
         background-color: white;
-        border: 4px solid #ffc107;
+        border: 4px solid $dark-yellow;
         border-radius: 25px;
         padding: 10px 20px;
         font-size: 24px;
-        color: #ffc107;
+        color: $dark-yellow;
         text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
@@ -175,7 +177,7 @@ main {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-            background-color: #ffc107;
+            background-color: $dark-yellow;
             color: white;
         }
     }
@@ -292,11 +294,11 @@ main {
     .myButton {
         justify-self: center;
         background-color: white;
-        border: 4px solid #ffc107;
+        border: 4px solid $dark-yellow;
         border-radius: 25px;
         padding: 10px 20px;
         font-size: 24px;
-        color: #ffc107;
+        color: $dark-yellow;
         text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
@@ -311,7 +313,7 @@ main {
         transition: background-color 0.3s, color 0.3s;
 
         &:hover {
-            background-color: #ffc107;
+            background-color: $dark-yellow;
             color: white;
         }
     }

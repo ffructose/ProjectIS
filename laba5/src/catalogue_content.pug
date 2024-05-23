@@ -4,8 +4,15 @@ main
     .main-box
 
         .content
-            img(src=require('./photo/buildYourCake.png') alt="Build Your Own Cake").buildYourCake
-            button.order-button.myButton Go to Custom Order
+            .title-text Catalogue
+
+            .search-container
+                input(type="text" placeholder="Search").search-class
+                a(href="#").icon-filter.button-fs
+                    img(src=require('./photo/filterIcon.png') alt="Language Icon")
+                a(href="#").icon-sort.button-fs
+                    img(src=require('./photo/sortIcon.png') alt="Language Icon")
+
             .products
                 .product-card
                     h3 Cupcake
@@ -32,4 +39,4 @@ main
                     .cart
                         img(src=require('./photo/cartIcon.png') alt="Cart Icon")
 
-        button.catalogue-button.myButton Go to Full Catalogue
+        button.loadmore-button.myButton Load More
