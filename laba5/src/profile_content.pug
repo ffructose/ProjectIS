@@ -1,35 +1,23 @@
 a(name="main")
 main 
     img(src=require('./photo/header-wave.svg') alt="Header Wave").headerWaveImg 
-    .main-box
+    .profile-box
 
         .content
-            img(src=require('./photo/buildYourCake.png') alt="Build Your Own Cake").buildYourCake
-            button.order-button.myButton Go to Custom Order
-            .products
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
-                .product-card
-                    h3 Cupcake
-                    img(src=require('./photo/cupcake.png')  alt="Cupcake")
-                    p.price ₴198.00
-                    .favorite
-                        img(src=require('./photo/heartIcon.png')  alt="Favorite Icon")
-                    .cart
-                        img(src=require('./photo/cartIcon.png') alt="Cart Icon")
+            .title-text YOUR ACCOUNT
 
-        button.catalogue-button.myButton Go to Full Catalogue
+            .profile-picture 
+                img(src=require('./photo/profilePhoto.jpg')  alt="YourPhoto")
+            .profile-info 
+                span.name name:
+                span.user-name Yumi Pesivna Hnatiuk
+
+                span.mail mail:
+                span.user-mail pesDurnes@gmail.com
+
+                span.num number:
+                span.user-num +380969104631
+
+            button.edit-button.myButton Edit
+            button.forgot-button.myButton Forgot Password
+            button.delete-button.myButton Delete Account

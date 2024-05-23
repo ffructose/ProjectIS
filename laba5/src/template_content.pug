@@ -5,7 +5,7 @@ main
 
         .content
             img(src=require('./photo/buildYourCake.png') alt="Build Your Own Cake").buildYourCake
-            button.order-button.myButton Go to Custom Order
+            a(href="custom.html").order-button.myButton Go to Custom Order
             .products
                 .product-card
                     h3 Cupcake
@@ -32,4 +32,4 @@ main
                     .cart
                         img(src=require('./photo/cartIcon.png') alt="Cart Icon")
 
-        button.main-button.myButton Go to Full Catalogue
+        a(href="catalogue.html").main-button.myButton Go to Full Catalogue
