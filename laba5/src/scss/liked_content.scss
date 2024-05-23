@@ -17,7 +17,7 @@ main {
 
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {
-    .main-box {
+    .liked-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
@@ -122,7 +122,7 @@ main {
 
 /* ---------------ПЛАНШЕТ--------------- */
 @media (min-width: 425px) {
-    .main-box {
+    .liked-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
@@ -227,7 +227,7 @@ main {
 
 /* ---------------КОМП--------------- */
 @media (min-width: 1024px) {
-    .main-box {
+    .liked-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
