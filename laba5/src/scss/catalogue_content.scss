@@ -453,12 +453,13 @@ main {
 
             .products {
                 display: flex;
-                justify-content: center;
+                justify-content: space-around;
                 flex-wrap: wrap;
-                gap: 80px;
+                gap: 50px;
                 margin-top: 80px;
 
                 .product-card {
+
                     background-color: white;
                     border-radius: 10px;
                     box-shadow: 2px 5px 15px black;
