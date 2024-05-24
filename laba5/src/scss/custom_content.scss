@@ -17,35 +17,7 @@ main {
 
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {
-    .myButton {
-        justify-self: center;
-        background-color: white;
-        border: 4px solid #ffc107;
-        border-radius: 25px;
-        padding: 5px 5px;
-        font-size: 15px;
-        color: #ffc107;
-        text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
-        letter-spacing: 3px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-        transition: background-color 0.3s, color 0.3s;
-
-        &:hover {
-            background-color: #ffc107;
-            color: white;
-        }
-    }
-
-
-    .main-box {
+    .custom-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
@@ -54,134 +26,340 @@ main {
             display: grid;
             width: 100%;
 
-            .buildYourCake {
-                width: 100%;
-                margin-top: -20px;
-                z-index: -1;
-
-                img {
-                    max-width: 100%;
-                    height: auto;
-                }
-            }
-
-            .order-button {
-                margin-top: -20px;
-            }
-
-            .products {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 10px;
+            .title-text {
+                grid-column: 1/3;
+                grid-row: 1;
                 margin-top: 30px;
+                justify-self: center;
 
-                .product-card {
-                    background-color: white;
-                    border-radius: 10px;
-                    box-shadow: 1px 2px 5px black;
-                    padding: 5px;
-                    display: grid;
+                font-family: "Fredoka";
+                color: $pink;
+                font-size: 15px;
+                font-weight: 800;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
 
-                    img {
-                        grid-area: 2/1/3/3;
-                        width: 100px;
-                        height: auto;
+            .choose-size {
+                justify-self: center;
+                grid-column: 1/3;
+                grid-row: 2;
+                margin-top: 30px;
+                width: 95%;
+                padding: 5px;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                border-radius: 10px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+
+                span {
+                    font-size: 15px;
+                    margin: 10px;
+                }
+
+                .sizes {
+                    padding-top: 8px;
+                    flex-wrap: wrap;
+                    display: flex;
+                    justify-content: space-around;
+                    margin-bottom: 20px;
+
+                    .size {
+                        text-align: center;
+                        margin-top: 10px;
+                        flex: 1 1 calc(20% - 5px); // 20% ширини контейнера мінус відступи
+                        max-width: calc(20% - 5px); // Максимальна ширина для забезпечення переносу
+
+                        padding: 9px 9px;
+                        border: 5px solid $dark-yellow;
+                        border-radius: 8px;
+                        background-color: white;
+                        font-size: 10px;
+                        font-weight: bold;
+                        color: black;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        transition: background-color 0.3s ease, color 0.3s ease;
+
+                        &:hover {
+                            background-color: $mid-yellow;
+                            color: #ffffff;
+                        }
+
+                        &:active {
+                            background-color: $mid-yellow;
+                            color: $pink;
+                        }
                     }
+                }
 
-                    h3 {
-                        grid-area: 1/1/2/2;
-                        margin: 10px 0;
-                        font-size: 15px;
+                .else {
+                    border: 5px solid $dark-yellow;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        font-size: 13px;
+                        font-weight: bold;
                         color: black;
                     }
 
-                    .price {
-                        grid-area: 3/1/4/3;
-                        font-size: 15px;
-                        color: $pink;
-                        margin: 10px 0;
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 13px;
+                        padding: 2px 0;
+                        width: 80%;
                     }
-
-                    .favorite {
-                        grid-area: 1/2/2/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 20px;
-                        height: 20px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 15px;
-                            height: 10px;
-                            cursor: pointer;
-                        }
-                    }
-
-                    .cart {
-                        grid-area: 3/2/4/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 20px;
-                        height: 20px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 15px;
-                            height: 10px;
-                            cursor: pointer;
-                        }
-                    }
-
-
                 }
+            }
+
+            .choose-taste {
+                grid-column: 1;
+                grid-row: 3;
+                margin-top: 25px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 5px;
+                border-radius: 10px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 95%;
+                height: fit-content;
+
+                span {
+                    font-size: 16px;
+                }
+
+                .tastes {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .taste {
+                        border: 3px solid $dark-yellow;
+                        border-radius: 5px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 13px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 20px;
+                            height: 20px;
+                            border: 2px solid $dark-yellow;
+                            border-radius: 3px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 15px;
+                    border: 3px solid $dark-yellow;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 13px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 13px;
+                        padding: 3px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .choose-decor {
+                justify-self: end;
+                grid-column: 2;
+                grid-row: 3;
+                margin-top: 25px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 5px;
+                border-radius: 10px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 95%;
+                height: fit-content;
+
+                span {
+                    font-size: 16px;
+                }
+
+                .decors {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .decor {
+                        border: 3px solid $dark-yellow;
+                        border-radius: 5px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 13px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 20px;
+                            height: 20px;
+                            border: 2px solid $dark-yellow;
+                            border-radius: 3px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 15px;
+                    border: 3px solid $dark-yellow;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 13px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 13px;
+                        padding: 3px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .result-box {
+                grid-column: 1/3;
+                grid-row: 4;
+                margin-top: 30px;
+                width: 100%;
+                background-color: #fff;
+                border: 3px solid $pink;
+                padding: 5px;
+                border-radius: 12px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 100%;
+                height: fit-content;
+                display: grid;
+
+                span {
+                    font-size: 18px;
+                }
+
+                .result-text {
+                    grid-column: 1;
+                    grid-row: 1;
+                    justify-self: start;
+                }
+
+                .result-price {
+                    grid-column: 2;
+                    grid-row: 1;
+                    justify-self: end;
+                }
+
+                .comment {
+                    grid-column: 1/3;
+                    grid-row: 2;
+                    justify-self: start;
+                    align-self: center;
+                    
+                    margin-top: 25px;
+                    height: 80px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    outline: none;
+                    width: 100%;
+                }
+
+                .custom-button {
+                    grid-column: 2;
+                    grid-row: 3;
+                    justify-self: end;
+                    align-self: center;
+                    margin-top: 25px;
+                    border-radius: 15px;
+                    font-size: 12px;
+                    padding: 5px;
+                    height: 50px;
+                }
+
             }
         }
 
-        .catalogue-button {
-            margin-top: 20px;
-        }
 
     }
 }
 
 /* ---------------ПЛАНШЕТ--------------- */
 @media (min-width: 425px) {
-    .myButton {
-        justify-self: center;
-        background-color: white;
-        border: 4px solid #ffc107;
-        border-radius: 25px;
-        padding: 10px 20px;
-        font-size: 24px;
-        color: #ffc107;
-        text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
-        letter-spacing: 3px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-        transition: background-color 0.3s, color 0.3s;
-
-        &:hover {
-            background-color: #ffc107;
-            color: white;
-        }
-    }
-
-
-    .main-box {
+    .custom-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
@@ -190,134 +368,341 @@ main {
             display: grid;
             width: 100%;
 
-            .buildYourCake {
+            .title-text {
+                grid-column: 1/3;
+                grid-row: 1;
+                margin-top: 30px;
+                justify-self: center;
+
+                font-family: "Fredoka";
+                color: $pink;
+                font-size: 25px;
+                font-weight: 800;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+            }
+
+            .choose-size {
+                grid-column: 1/3;
+                grid-row: 2;
+                margin-top: 50px;
                 width: 100%;
-                margin-top: -50px;
-                z-index: -1;
+                padding: 5px;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
 
-                img {
-                    max-width: 100%;
-                    height: auto;
+                span {
+                    font-size: 20px;
+                    margin: 25px;
                 }
-            }
 
-            .order-button {
-                margin-top: -20px;
-            }
+                .sizes {
+                    padding-top: 20px;
+                    flex-wrap: wrap;
+                    display: flex;
+                    justify-content: space-around;
+                    margin-bottom: 20px;
 
-            .products {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 45px;
-                margin-top: 80px;
+                    .size {
+                        text-align: center;
+                        margin-top: 10px;
+                        flex: 1 1 calc(20% - 10px); // 20% ширини контейнера мінус відступи
+                        max-width: calc(20% - 10px); // Максимальна ширина для забезпечення переносу
 
-                .product-card {
-                    background-color: white;
-                    border-radius: 10px;
-                    box-shadow: 2px 5px 15px black;
-                    padding: 10px;
-                    display: grid;
+                        padding: 10px 20px;
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: black;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        transition: background-color 0.3s ease, color 0.3s ease;
 
-                    img {
-                        grid-area: 2/1/3/3;
-                        width: 140px;
-                        height: auto;
+                        &:hover {
+                            background-color: $mid-yellow;
+                            color: #ffffff;
+                        }
+
+                        &:active {
+                            background-color: $mid-yellow;
+                            color: $pink;
+                        }
                     }
+                }
 
-                    h3 {
-                        grid-area: 1/1/2/2;
-                        margin: 10px 0;
-                        font-size: 20px;
+                .else {
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
                         color: black;
                     }
 
-                    .price {
-                        grid-area: 3/1/4/3;
-                        font-size: 20px;
-                        color: $pink;
-                        margin: 10px 0;
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 2px 0;
+                        width: 80%;
                     }
-
-                    .favorite {
-                        grid-area: 1/2/2/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 30px;
-                        height: 30px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 20px;
-                            height: 15px;
-                            cursor: pointer;
-                        }
-                    }
-
-                    .cart {
-                        grid-area: 3/2/4/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 30px;
-                        height: 30px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 20px;
-                            height: 15px;
-                            cursor: pointer;
-                        }
-                    }
-
-
                 }
+            }
+
+            .choose-taste {
+                grid-column: 1;
+                grid-row: 3;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 90%;
+                height: fit-content;
+
+                span {
+                    font-size: 23px;
+                }
+
+                .tastes {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .taste {
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 20px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 30px;
+                            height: 30px;
+                            border: 3px solid $dark-yellow;
+                            border-radius: 5px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 25px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 5px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .choose-decor {
+                justify-self: end;
+                grid-column: 2;
+                grid-row: 3;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 90%;
+                height: fit-content;
+
+                span {
+                    font-size: 23px;
+                }
+
+                .decors {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .decor {
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 20px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 30px;
+                            height: 30px;
+                            border: 3px solid $dark-yellow;
+                            border-radius: 5px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 25px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 5px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .result-box {
+                grid-column: 1/3;
+                grid-row: 4;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 5px solid $pink;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 100%;
+                height: fit-content;
+                display: grid;
+
+                span {
+                    font-size: 23px;
+                }
+
+                .result-text {
+                    grid-column: 1;
+                    grid-row: 1;
+                    justify-self: start;
+                }
+
+                .result-price {
+                    grid-column: 2;
+                    grid-row: 1;
+                    justify-self: end;
+                }
+
+                .comment {
+                    grid-column: 1;
+                    grid-row: 2;
+                    justify-self: start;
+                    align-self: center;
+                    
+                    margin-top: 25px;
+                    height: 80px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    outline: none;
+                    width: 100%;
+                }
+
+                .custom-button {
+                    grid-column: 2;
+                    grid-row: 2;
+                    justify-self: end;
+                    align-self: center;
+                    margin-top: 25px;
+                    border-radius: 15px;
+                    font-size: 18px;
+                    padding: 5px;
+                    height: 50px;
+                }
+
             }
         }
 
-        .catalogue-button {
-            margin-top: 50px;
-        }
 
     }
 }
 
 /* ---------------КОМП--------------- */
 @media (min-width: 1024px) {
-    .myButton {
-        justify-self: center;
-        background-color: white;
-        border: 4px solid #ffc107;
-        border-radius: 25px;
-        padding: 10px 20px;
-        font-size: 24px;
-        color: #ffc107;
-        text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
-        letter-spacing: 3px;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        display: inline-block;
-        transition: background-color 0.3s, color 0.3s;
-
-        &:hover {
-            background-color: #ffc107;
-            color: white;
-        }
-    }
-
-
-    .main-box {
+    .custom-box {
         display: grid;
         justify-content: center;
         font-family: 'Fredoka';
@@ -326,99 +711,333 @@ main {
             display: grid;
             width: 1024px;
 
-            .buildYourCake {
+            .title-text {
+                grid-column: 1/3;
+                grid-row: 1;
+                margin-top: 30px;
+                justify-self: center;
+
+                font-family: "Fredoka";
+                color: $pink;
+                font-size: 40px;
+                font-weight: 800;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+            }
+
+            .choose-size {
+                grid-column: 1/3;
+                grid-row: 2;
+                margin-top: 50px;
                 width: 100%;
-                margin-top: -90px;
-                z-index: -1;
+                padding: 5px;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
 
-                img {
-                    max-width: 100%;
-                    height: auto;
+                span {
+                    font-size: 30px;
+                    margin: 25px;
                 }
-            }
 
-            .order-button {
-                margin-top: -20px;
-            }
+                .sizes {
+                    padding-top: 20px;
+                    flex-wrap: wrap;
+                    display: flex;
+                    justify-content: space-around;
+                    margin-bottom: 20px;
 
-            .products {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 80px;
-                margin-top: 80px;
+                    .size {
+                        text-align: center;
+                        margin-top: 10px;
+                        flex: 1 1 calc(20% - 40px); // 20% ширини контейнера мінус відступи
+                        max-width: calc(20% - 40px); // Максимальна ширина для забезпечення переносу
 
-                .product-card {
-                    background-color: white;
-                    border-radius: 10px;
-                    box-shadow: 2px 5px 15px black;
-                    padding: 15px;
-                    display: grid;
+                        padding: 10px 20px;
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: black;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        transition: background-color 0.3s ease, color 0.3s ease;
 
-                    img {
-                        grid-area: 2/1/3/3;
-                        width: 200px;
-                        height: auto;
+                        &:hover {
+                            background-color: $mid-yellow;
+                            color: #ffffff;
+                        }
+
+                        &:active {
+                            background-color: $mid-yellow;
+                            color: $pink;
+                        }
                     }
+                }
 
-                    h3 {
-                        grid-area: 1/1/2/2;
-                        margin: 10px 0;
-                        font-size: 24px;
+                .else {
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
                         color: black;
                     }
 
-                    .price {
-                        grid-area: 3/1/4/3;
-                        font-size: 24px;
-                        color: $pink;
-                        margin: 10px 0;
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 5px 0;
+                        width: 80%;
                     }
-
-                    .favorite {
-                        grid-area: 1/2/2/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 40px;
-                        height: 40px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 25px;
-                            height: 20px;
-                            cursor: pointer;
-                        }
-                    }
-
-                    .cart {
-                        grid-area: 3/2/4/3;
-                        justify-self: end;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 40px;
-                        height: 40px;
-                        background-color: $pink;
-                        border-radius: 50%;
-
-                        img {
-                            width: 25px;
-                            height: 20px;
-                            cursor: pointer;
-                        }
-                    }
-
-
                 }
+            }
+
+            .choose-taste {
+                grid-column: 1;
+                grid-row: 3;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 90%;
+                height: fit-content;
+
+                span {
+                    font-size: 30px;
+                }
+
+                .tastes {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .taste {
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 28px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 50px;
+                            height: 50px;
+                            border: 5px solid $dark-yellow;
+                            border-radius: 15px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 25px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 5px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .choose-decor {
+                justify-self: end;
+                grid-column: 2;
+                grid-row: 3;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 0px solid #ffcc00;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 90%;
+                height: fit-content;
+
+                span {
+                    font-size: 30px;
+                }
+
+                .decors {
+                    color: black;
+
+                    padding-top: 10px;
+                    gap: 6px;
+                    display: flex;
+                    flex-direction: column;
+
+                    .decor {
+                        border: 5px solid $dark-yellow;
+                        border-radius: 15px;
+                        background-color: white;
+                        padding: 5px;
+                        align-items: center;
+                        display: grid;
+
+
+                        span {
+                            grid-column: 1;
+                            justify-self: start;
+                            font-size: 28px;
+                        }
+
+                        input[type="checkbox"] {
+                            grid-column: 2;
+                            justify-self: end;
+                            cursor: pointer;
+
+                            width: 50px;
+                            height: 50px;
+                            border: 5px solid $dark-yellow;
+                            border-radius: 15px;
+                            background-color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: black;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            cursor: pointer;
+                            transition: background-color 0.3s ease,
+                                color 0.3s ease;
+                        }
+                    }
+                }
+
+                .else {
+                    margin-top: 25px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 10px;
+
+                    span {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: black;
+                    }
+
+                    .comment {
+                        border: none;
+                        border-bottom: 2px solid #000000;
+                        outline: none;
+                        font-size: 18px;
+                        padding: 5px 0;
+                        width: 80%;
+                    }
+                }
+            }
+
+            .result-box {
+                grid-column: 1/3;
+                grid-row: 4;
+                margin-top: 50px;
+                width: 100%;
+                background-color: #fff;
+                border: 5px solid $pink;
+                padding: 15px;
+                border-radius: 20px;
+                box-shadow: -3px 1px 15px rgb(0, 0, 0);
+                width: 100%;
+                height: fit-content;
+                display: grid;
+
+                span {
+                    font-size: 30px;
+                }
+
+                .result-text {
+                    grid-column: 1;
+                    grid-row: 1;
+                    justify-self: start;
+                }
+
+                .result-price {
+                    grid-column: 2;
+                    grid-row: 1;
+                    justify-self: end;
+                }
+
+                .comment {
+                    grid-column: 1;
+                    grid-row: 2;
+                    justify-self: start;
+                    align-self: center;
+                    
+                    margin-top: 25px;
+                    height: 80px;
+                    border: 5px solid $dark-yellow;
+                    border-radius: 15px;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    outline: none;
+                    width: 100%;
+                }
+
+                .custom-button {
+                    grid-column: 2;
+                    grid-row: 2;
+                    justify-self: end;
+                    align-self: center;
+                    margin-top: 25px;
+                    border-radius: 15px;
+                    font-size: 23px;
+                    height: 50px;
+                }
+
             }
         }
 
-        .catalogue-button {
-            margin-top: 50px;
-        }
 
     }
 }
