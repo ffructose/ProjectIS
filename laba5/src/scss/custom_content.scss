@@ -148,12 +148,12 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
+                        font-size: 13px;
 
 
                         span {
                             grid-column: 1;
                             justify-self: start;
-                            font-size: 13px;
                         }
 
                         input[type="checkbox"] {
@@ -173,6 +173,27 @@ main {
                             cursor: pointer;
                             transition: background-color 0.3s ease,
                                 color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
+                        }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 18px;
+                            font-weight: bold;
+                            line-height: 1;
                         }
                     }
                 }
@@ -236,12 +257,12 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
+                        font-size: 13px;
 
 
                         span {
                             grid-column: 1;
                             justify-self: start;
-                            font-size: 13px;
                         }
 
                         input[type="checkbox"] {
@@ -261,6 +282,27 @@ main {
                             cursor: pointer;
                             transition: background-color 0.3s ease,
                                 color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
+                        }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 18px;
+                            font-weight: bold;
+                            line-height: 1;
                         }
                     }
                 }
@@ -326,7 +368,7 @@ main {
                     grid-row: 2;
                     justify-self: start;
                     align-self: center;
-                    
+
                     margin-top: 25px;
                     height: 80px;
                     border: 5px solid $dark-yellow;
@@ -428,7 +470,8 @@ main {
                             color: #ffffff;
                         }
 
-                        &:active {
+                        &:active,
+                        &.selected {
                             background-color: $mid-yellow;
                             color: $pink;
                         }
@@ -491,12 +534,12 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
+                        font-size: 20px;
 
 
                         span {
                             grid-column: 1;
                             justify-self: start;
-                            font-size: 20px;
                         }
 
                         input[type="checkbox"] {
@@ -514,9 +557,30 @@ main {
                             color: black;
                             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                             cursor: pointer;
-                            transition: background-color 0.3s ease,
-                                color 0.3s ease;
+                            transition: background-color 0.3s ease, color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
                         }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 20px;
+                            font-weight: bold;
+                            line-height: 1;
+                        }
+
                     }
                 }
 
@@ -579,12 +643,12 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
+                        font-size: 20px;
 
 
                         span {
                             grid-column: 1;
                             justify-self: start;
-                            font-size: 20px;
                         }
 
                         input[type="checkbox"] {
@@ -602,9 +666,30 @@ main {
                             color: black;
                             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                             cursor: pointer;
-                            transition: background-color 0.3s ease,
-                                color 0.3s ease;
+                            transition: background-color 0.3s ease, color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
                         }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 20px;
+                            font-weight: bold;
+                            line-height: 1;
+                        }
+
                     }
                 }
 
@@ -669,7 +754,7 @@ main {
                     grid-row: 2;
                     justify-self: start;
                     align-self: center;
-                    
+
                     margin-top: 25px;
                     height: 80px;
                     border: 5px solid $dark-yellow;
@@ -834,13 +919,7 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
-
-
-                        span {
-                            grid-column: 1;
-                            justify-self: start;
-                            font-size: 28px;
-                        }
+                        font-size: 28px;
 
                         input[type="checkbox"] {
                             grid-column: 2;
@@ -859,6 +938,27 @@ main {
                             cursor: pointer;
                             transition: background-color 0.3s ease,
                                 color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
+                        }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 28px;
+                            font-weight: bold;
+                            line-height: 1;
                         }
                     }
                 }
@@ -922,13 +1022,7 @@ main {
                         padding: 5px;
                         align-items: center;
                         display: grid;
-
-
-                        span {
-                            grid-column: 1;
-                            justify-self: start;
-                            font-size: 28px;
-                        }
+                        font-size: 28px;
 
                         input[type="checkbox"] {
                             grid-column: 2;
@@ -947,6 +1041,27 @@ main {
                             cursor: pointer;
                             transition: background-color 0.3s ease,
                                 color 0.3s ease;
+                            appearance: none;
+                            /* Очищуємо стандартний вигляд чекбоксу */
+                            position: relative;
+                        }
+
+                        input[type="checkbox"]:checked {
+                            background-color: $mid-yellow;
+                            border-color: $dark-yellow;
+                        }
+
+                        input[type="checkbox"]:checked::before {
+                            content: '✖';
+                            /* Unicode символ хрестика */
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: $pink;
+                            font-size: 28px;
+                            font-weight: bold;
+                            line-height: 1;
                         }
                     }
                 }
@@ -1012,7 +1127,7 @@ main {
                     grid-row: 2;
                     justify-self: start;
                     align-self: center;
-                    
+
                     margin-top: 25px;
                     height: 80px;
                     border: 5px solid $dark-yellow;

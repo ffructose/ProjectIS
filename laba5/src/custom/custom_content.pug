@@ -7,72 +7,28 @@ main
             .title-text MAKE YOUR PREFERABLE CAKE
             .choose-size 
                 span CHOOSE THE SIZE
-                .sizes
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
-                    .size 1 kilo
+                 .sizes(id="sizeContainer")
 
                 .else 
                     span else: 
-                    input(type="text" ).comment
+                    input(type="text" name="comment" placeholder="Your comment").comment
+
             .choose-taste
                 span CHOOSE THE TASTE
-                .tastes
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    .taste 
-                        span coconut
-                        input(type="checkbox" ) 
-                    
+                .tastes(id="tasteContainer") 
 
                 .else 
                     span else: 
                     input(type="text" ).comment
             .choose-decor
                 span CHOOSE THE DECOR
-                .decors
-                    .decor 
-                        span flowers
-                        input(type="checkbox" ) 
-                    .decor 
-                        span flowers
-                        input(type="checkbox" ) 
-                    .decor 
-                        span flowers
-                        input(type="checkbox" ) 
-                    .decor 
-                        span flowers
-                        input(type="checkbox" ) 
+                .decors(id="decorContainer")
 
                 .else 
                     span else: 
                     input(type="text" ).comment
             .result-box 
                 span.result-text ESTIMATED PRICE:
-                span.result-price ₴198.00
+                span.result-price ₴<span id="totalPrice">00.00</span>
                 textarea.comment(placeholder="comments")
                 button.custom-button.myButton ASK FOR SUBMIT
