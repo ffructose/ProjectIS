@@ -13,4 +13,4 @@ import './scss/profile_content.scss'
 import './scss/cart_content.scss'
 
 //---------------JAVASCRIPT---------------//
-import './custom/try.js';  // Додайте цей рядок до index.js
+import './custom/custom.js';  // Додайте цей рядок до index.js
