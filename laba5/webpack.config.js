@@ -54,31 +54,31 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             // template: path.join(__dirname, 'src', 'template.html'),  // Uncomment if using HTML template
-            template: path.join(__dirname, 'src', 'template.pug'),  // Use Pug template
+            template: path.join(__dirname, 'src', 'main', 'template.pug'),  // Use Pug template
             filename: 'index.html',  // Output HTML file name
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'catalogue.pug'),
+            template: path.join(__dirname, 'src', 'catalogue', 'catalogue.pug'),
             filename: 'catalogue.html'
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'custom.pug'),
+            template: path.join(__dirname, 'src', 'custom', 'custom.pug'),
             filename: 'custom.html'
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'aboutus.pug'),
+            template: path.join(__dirname, 'src', 'aboutus', 'aboutus.pug'),
             filename: 'aboutus.html'
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'liked.pug'),
+            template: path.join(__dirname, 'src', 'liked', 'liked.pug'),
             filename: 'liked.html'
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'profile.pug'),
+            template: path.join(__dirname, 'src', 'profile', 'profile.pug'),
             filename: 'profile.html'
         }),
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'cart.pug'),
+            template: path.join(__dirname, 'src', 'cart', 'cart.pug'),
             filename: 'cart.html'
         }),
         new FileManagerPlugin({
