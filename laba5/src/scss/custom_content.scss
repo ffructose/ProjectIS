@@ -13,7 +13,35 @@ main {
         z-index: 1;
         margin-top: -1px;
     }
+
+    
 }
+.notification {
+    display: none; /* Сховане за замовчуванням */
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $pink; 
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.notification.show {
+    display: block;
+}
+
+button.custom-button.disabled {
+    background-color: #ccc; /* Сірий колір для кнопки у стані disabled */
+    cursor: not-allowed; /* Заборонений курсор */
+    
+}
+
+
 
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {

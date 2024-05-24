@@ -1,3 +1,5 @@
+console.log("try.js loaded");
+
 // sizes list
 let sizes = [];
 sizes[0] = {
@@ -83,15 +85,29 @@ decors[4] = {
     price: 150.90
 };
 
-
 let basePrice = 0.00;
 let selectedSizePrice = 0;
 let selectedTastesPrice = 0;
 let selectedDecorsPrice = 0;
+let isSizeSelected = false;
+let isTasteSelected = false;
+let isDecorSelected = false;
 
 function updateTotalPrice() {
     const totalPrice = basePrice + (selectedTastesPrice + selectedDecorsPrice) + selectedSizePrice * 1.3;
     document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    updateSubmitButtonState();
+}
+
+function updateSubmitButtonState() {
+    const submitButton = document.querySelector('.custom-button.myButton');
+    if (isSizeSelected && isTasteSelected && isDecorSelected) {
+        submitButton.classList.remove('disabled');
+        submitButton.disabled = false;
+    } else {
+        submitButton.classList.add('disabled');
+        submitButton.disabled = true;
+    }
 }
 
 function populateSizes() {
@@ -106,10 +122,12 @@ function populateSizes() {
             if (sizeElement.classList.contains('selected')) {
                 sizeElement.classList.remove('selected');
                 selectedSizePrice = 0;
+                isSizeSelected = false;
             } else {
                 document.querySelectorAll('.size').forEach(el => el.classList.remove('selected'));
                 sizeElement.classList.add('selected');
                 selectedSizePrice = parseFloat(size.price);
+                isSizeSelected = true;
             }
             updateTotalPrice();
         });
@@ -139,8 +157,10 @@ function populateTastes() {
         checkbox.addEventListener('change', function () {
             if (checkbox.checked) {
                 selectedTastesPrice += parseFloat(checkbox.dataset.price);
+                isTasteSelected = true;
             } else {
                 selectedTastesPrice -= parseFloat(checkbox.dataset.price);
+                isTasteSelected = document.querySelectorAll('#tasteContainer input:checked').length > 0;
             }
             updateTotalPrice();
         });
@@ -171,8 +191,10 @@ function populateDecors() {
         checkbox.addEventListener('change', function () {
             if (checkbox.checked) {
                 selectedDecorsPrice += parseFloat(checkbox.dataset.price);
+                isDecorSelected = true;
             } else {
                 selectedDecorsPrice -= parseFloat(checkbox.dataset.price);
+                isDecorSelected = document.querySelectorAll('#decorContainer input:checked').length > 0;
             }
             updateTotalPrice();
         });
@@ -181,9 +203,20 @@ function populateDecors() {
     });
 }
 
+function showNotification() {
+    const notification = document.getElementById('notification');
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000); // Повідомлення буде показано протягом 3 секунд
+}
+
 // Виклик функцій після завантаження документа
 document.addEventListener('DOMContentLoaded', () => {
     populateSizes();
     populateTastes();
     populateDecors();
+
+    document.querySelector('.custom-button.myButton').addEventListener('click', showNotification);
+    updateSubmitButtonState(); // Ініціалізація стану кнопки
 });
