@@ -81,6 +81,14 @@ module.exports = {
             template: path.join(__dirname, 'src', 'cart', 'cart.pug'),
             filename: 'cart.html'
         }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src', 'views', 'register.pug'),
+            filename: 'register.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src', 'views', 'login.pug'),
+            filename: 'login.html'
+        }),
         new FileManagerPlugin({
             events: {
                 onStart: {

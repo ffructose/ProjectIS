@@ -9,15 +9,18 @@ main
             .profile-picture 
                 img(src=require('../photo/profilePhoto.jpg')  alt="YourPhoto")
             .profile-info 
-                span.name name:
-                span.user-name Yumi Pesivna Hnatiuk
+                span.name Name:
+                span.user-name 
 
-                span.mail mail:
-                span.user-mail pesDurnes@gmail.com
+                span.mail Mail:
+                span.user-mail 
 
-                span.num number:
-                span.user-num +380969104631
+                span.num Number:
+                span.user-num 
 
             button.edit-button.myButton Edit
             button.forgot-button.myButton Forgot Password
             button.delete-button.myButton Delete Account
+
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    script(src="profile.js")

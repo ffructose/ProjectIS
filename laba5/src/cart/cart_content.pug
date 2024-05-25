@@ -7,33 +7,8 @@ main
             .title-text Your Cart
 
             .cart-list 
-                .cart-item
-                    span.item-name Cupcake "Honey"
-                    .item-image
-                        img(src=require('../photo/cupcake.png')  alt="Cupcake")
-                    input(type="number" value="1" min="1" ).item-amount 
-                    span.item-price ₴198.00
-                    .remove-item 
-                        button x
-                .cart-item
-                    span.item-name Cupcake "Honey"
-                    .item-image
-                        img(src=require('../photo/cupcake.png')  alt="Cupcake")
-                    input(type="number" value="1" min="1" ).item-amount 
-                    span.item-price ₴198.00
-                    .remove-item 
-                        button x
-                .cart-item
-                    span.item-name Cupcake "Honey"
-                    .item-image
-                        img(src=require('../photo/cupcake.png')  alt="Cupcake")
-                    input(type="number" value="1" min="1" ).item-amount 
-                    span.item-price ₴198.00
-                    .remove-item 
-                        button x
                 
-
             .result-box 
                 span.result-text SUMM TO PAYMENT:
-                span.result-price ₴198.00
+                span.result-price#total-price ₴0.00
             button.cart-button.myButton Proceed to Checkout
