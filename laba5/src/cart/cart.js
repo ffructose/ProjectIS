@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // Ensure the script runs only on the cart page
+    if (!document.querySelector('.cart-list')) return;
+
     const token = localStorage.getItem('token');
     if (!token) {
         alert("You must be logged in to view your cart.");

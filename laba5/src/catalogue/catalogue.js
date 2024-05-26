@@ -59,6 +59,7 @@ function addToCart(event) {
     if (!productCard) return;
 
     const goodId = productCard.dataset.goodId;
+    const productName = productCard.querySelector('h3').textContent;
     const token = localStorage.getItem('token');
     if (!token) {
         alert('You need to log in to add products to the cart.');
@@ -72,12 +73,21 @@ function addToCart(event) {
     })
     .then(response => {
         console.log('Product added to cart:', response.data);
-        alert('Product added to cart');
+        showNotification(productName); // Show notification instead of alert
     })
     .catch(error => {
         console.error('Error adding product to cart:', error);
         alert('Error adding product to cart');
     });
+}
+
+function showNotification(productName) {
+    const notification = document.getElementById('notification');
+    notification.querySelector('.notification-text').textContent = `${productName} added to your cart`;
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000); // Hide the notification after 3 seconds
 }
 
 function loadProducts(fetchedGoods) {
