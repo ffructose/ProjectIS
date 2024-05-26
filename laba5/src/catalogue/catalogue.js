@@ -28,6 +28,8 @@ function createProductCard(product) {
 
 function loadMoreProducts() {
     const productsContainer = document.querySelector(".products");
+    if (!productsContainer) return;
+
     for (let i = currentIndex; i < currentIndex + productsPerPage && i < goods.length; i++) {
         const productCardHTML = createProductCard(goods[i]);
         if (productCardHTML) {
@@ -37,46 +39,46 @@ function loadMoreProducts() {
     currentIndex += productsPerPage;
 
     // Hide the button if there are no more products to load
-    if (currentIndex >= goods.length) {
-        document.querySelector(".loadmore-button").style.display = "none";
+    const loadMoreButton = document.querySelector(".loadmore-button");
+    if (loadMoreButton && currentIndex >= goods.length) {
+        loadMoreButton.style.display = "none";
     }
 
     // Attach event listeners for adding to cart
-    document.querySelectorAll('.cart').forEach(cartIcon => {
-        cartIcon.addEventListener('click', addToCart);
-    });
+    const cartIcons = document.querySelectorAll('.cart');
+    if (cartIcons) {
+        cartIcons.forEach(cartIcon => {
+            cartIcon.addEventListener('click', addToCart);
+        });
+    }
 }
 
-async function addToCart(event) {
+function addToCart(event) {
     event.preventDefault(); // Prevent the default link behavior
     const productCard = event.target.closest('.product-card');
-    const goodId = productCard.dataset.goodId;
+    if (!productCard) return;
 
+    const goodId = productCard.dataset.goodId;
     const token = localStorage.getItem('token');
     if (!token) {
-        alert("You must be logged in to add items to the cart.");
+        alert('You need to log in to add products to the cart.');
         return;
     }
 
-    try {
-        const response = await axios.post('http://localhost:3000/add-to-cart', { good_id: goodId }, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'  // Ensure the content type is JSON
-            }
-        });
-
-        if (response.status === 201) {
-            alert('Product added to cart');
-        } else {
-            alert('Error adding product to cart');
+    axios.post('http://localhost:3000/add-to-cart', { good_id: goodId }, {
+        headers: {
+            'Authorization': `Bearer ${token}`
         }
-    } catch (error) {
+    })
+    .then(response => {
+        console.log('Product added to cart:', response.data);
+        alert('Product added to cart');
+    })
+    .catch(error => {
         console.error('Error adding product to cart:', error);
         alert('Error adding product to cart');
-    }
+    });
 }
-
 
 function loadProducts(fetchedGoods) {
     goods = fetchedGoods; // Store the fetched products in the goods array
@@ -84,12 +86,11 @@ function loadProducts(fetchedGoods) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".loadmore-button").addEventListener("click", loadMoreProducts);
-});
+    const loadMoreButton = document.querySelector(".loadmore-button");
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener("click", loadMoreProducts);
+    }
 
-
-// Function to fetch data and pass it to catalogue.js
-document.addEventListener('DOMContentLoaded', () => {
     axios.get('http://localhost:3000/data')
         .then(response => {
             console.log('Fetched data:', response.data); // Log the fetched data

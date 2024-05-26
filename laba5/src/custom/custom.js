@@ -1,15 +1,11 @@
-console.log("custom.js loaded");
 import axios from 'axios';
+
 // sizes list
 let sizes = [];
-
 // tastes list
 let tastes = [];
-
-
 // decors list
 let decors = [];
-
 
 let basePrice = 0.00;
 let selectedSizePrice = 0;
@@ -20,24 +16,30 @@ let isTasteSelected = false;
 let isDecorSelected = false;
 
 function updateTotalPrice() {
-    const totalPrice = basePrice + (selectedTastesPrice*selectedSizePrice*0.5 + selectedDecorsPrice*selectedSizePrice*0.5) + selectedSizePrice * 35.3;
-    document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    const totalPrice = basePrice + (selectedTastesPrice * selectedSizePrice * 0.5 + selectedDecorsPrice * selectedSizePrice * 0.5) + selectedSizePrice * 35.3;
+    const totalPriceElement = document.getElementById('totalPrice');
+    if (totalPriceElement) {
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
     updateSubmitButtonState();
 }
 
 function updateSubmitButtonState() {
     const submitButton = document.querySelector('.custom-button.myButton');
-    if (isSizeSelected && isTasteSelected && isDecorSelected) {
-        submitButton.classList.remove('disabled');
-        submitButton.disabled = false;
-    } else {
-        submitButton.classList.add('disabled');
-        submitButton.disabled = true;
+    if (submitButton) {
+        if (isSizeSelected && isTasteSelected && isDecorSelected) {
+            submitButton.classList.remove('disabled');
+            submitButton.disabled = false;
+        } else {
+            submitButton.classList.add('disabled');
+            submitButton.disabled = true;
+        }
     }
 }
 
 function populateSizes() {
     const sizeContainer = document.getElementById('sizeContainer');
+    if (!sizeContainer) return;
 
     sizes.forEach((size, index) => {
         const sizeElement = document.createElement('div');
@@ -63,6 +65,7 @@ function populateSizes() {
 
 function populateTastes() {
     const tasteContainer = document.getElementById('tasteContainer');
+    if (!tasteContainer) return;
 
     tastes.forEach((taste, index) => {
         const tasteElement = document.createElement('div');
@@ -97,6 +100,7 @@ function populateTastes() {
 
 function populateDecors() {
     const decorContainer = document.getElementById('decorContainer');
+    if (!decorContainer) return;
 
     decors.forEach((decor, index) => {
         const decorElement = document.createElement('div');
@@ -131,44 +135,52 @@ function populateDecors() {
 
 function showNotification() {
     const notification = document.getElementById('notification');
-    notification.classList.add('show');
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 3000); // Повідомлення буде показано протягом 3 секунд
+    if (notification) {
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000); // Show notification for 3 seconds
+    }
 }
 
-// Виклик функцій після завантаження документа
+// Call functions after document is loaded
 document.addEventListener('DOMContentLoaded', () => {
     populateSizes();
     populateTastes();
     populateDecors();
 
-    document.querySelector('.custom-button.myButton').addEventListener('click', showNotification);
-    updateSubmitButtonState(); // Ініціалізація стану кнопки
+    const submitButton = document.querySelector('.custom-button.myButton');
+    if (submitButton) {
+        submitButton.addEventListener('click', showNotification);
+    }
+
+    updateSubmitButtonState(); // Initialize button state
 });
 
 function loadProductsSizes(fetchedData) {
-    sizes = fetchedData; 
+    sizes = fetchedData;
     populateSizes();
 }
+
 function loadProductsTastes(fetchedData) {
-    tastes = fetchedData; 
+    tastes = fetchedData;
     populateTastes();
 }
+
 function loadProductsDecors(fetchedData) {
-    decors = fetchedData; 
+    decors = fetchedData;
     populateDecors();
 }
 
 console.log(sizes);
 console.log(decors);
 console.log(tastes);
-// Function to fetch data 
+
+// Fetch sizes
 document.addEventListener('DOMContentLoaded', () => {
     axios.get('http://localhost:3000/sizes')
         .then(response => {
-            console.log('Fetched data:', response.data); // Log the fetched data
-            // Pass the fetched data to loadProducts function
+            console.log('Fetched data:', response.data);
             loadProductsSizes(response.data);
         })
         .catch(error => {
@@ -176,24 +188,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
-// Function to fetch data 
+// Fetch tastes
 document.addEventListener('DOMContentLoaded', () => {
     axios.get('http://localhost:3000/tastes')
         .then(response => {
-            console.log('Fetched data:', response.data); // Log the fetched data
-            // Pass the fetched data to loadProducts function
+            console.log('Fetched data:', response.data);
             loadProductsTastes(response.data);
         })
         .catch(error => {
             console.error('There was an error fetching the data!', error);
         });
 });
-// Function to fetch data 
+
+// Fetch decors
 document.addEventListener('DOMContentLoaded', () => {
     axios.get('http://localhost:3000/decors')
         .then(response => {
-            console.log('Fetched data:', response.data); // Log the fetched data
-            // Pass the fetched data to loadProducts function
+            console.log('Fetched data:', response.data);
             loadProductsDecors(response.data);
         })
         .catch(error => {
