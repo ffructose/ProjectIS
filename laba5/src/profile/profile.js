@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        profileLoginRegister.classList.remove('hidden');
-        profileContent.classList.add('hidden');
+        if (profileLoginRegister) profileLoginRegister.classList.remove('hidden');
+        if (profileContent) profileContent.classList.add('hidden');
     } else {
         try {
             const response = await axios.get('http://localhost:3000/user', {
@@ -19,36 +19,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             const user = response.data;
             console.log('User data:', user);
 
-            document.querySelector('.user-name').textContent = user.user_login;
-            document.querySelector('.user-mail').textContent = user.user_mail;
-            document.querySelector('.user-num').textContent = user.user_phone;
+            const userNameElement = document.querySelector('.user-name');
+            const userMailElement = document.querySelector('.user-mail');
+            const userNumElement = document.querySelector('.user-num');
+            const editUserMailElement = document.querySelector('#edit_user_mail');
+            const editUserPhoneElement = document.querySelector('#edit_user_phone');
 
-            document.querySelector('#edit_user_mail').value = user.user_mail;
-            document.querySelector('#edit_user_phone').value = user.user_phone;
+            if (userNameElement) userNameElement.textContent = user.user_login;
+            if (userMailElement) userMailElement.textContent = user.user_mail;
+            if (userNumElement) userNumElement.textContent = user.user_phone;
 
-            profileContent.classList.remove('hidden');
-            profileLoginRegister.classList.add('hidden');
+            if (editUserMailElement) editUserMailElement.value = user.user_mail;
+            if (editUserPhoneElement) editUserPhoneElement.value = user.user_phone;
+
+            if (profileContent) profileContent.classList.remove('hidden');
+            if (profileLoginRegister) profileLoginRegister.classList.add('hidden');
         } catch (error) {
             console.error('Error fetching user data:', error);
-            profileLoginRegister.classList.remove('hidden');
-            profileContent.classList.add('hidden');
+            if (profileLoginRegister) profileLoginRegister.classList.remove('hidden');
+            if (profileContent) profileContent.classList.add('hidden');
         }
     }
 
-    document.querySelector('.login-button').addEventListener('click', () => {
-        window.location.href = '/login.html';
-    });
+    const loginButton = document.querySelector('.login-button');
+    if (loginButton) {
+        loginButton.addEventListener('click', () => {
+            window.location.href = '/login.html';
+        });
+    }
 
-    document.querySelector('.register-button').addEventListener('click', () => {
-        window.location.href = '/register.html';
-    });
+    const registerButton = document.querySelector('.register-button');
+    if (registerButton) {
+        registerButton.addEventListener('click', () => {
+            window.location.href = '/register.html';
+        });
+    }
 
     const logoutButton = document.querySelector('.delete-button');
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('token');
-            profileLoginRegister.classList.remove('hidden');
-            profileContent.classList.add('hidden');
+            if (profileLoginRegister) profileLoginRegister.classList.remove('hidden');
+            if (profileContent) profileContent.classList.add('hidden');
         });
     }
 
@@ -58,14 +70,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log('Edit button clicked');
 
             // Показати поля введення
-            document.querySelector('.user-mail').classList.add('hidden');
-            document.querySelector('.user-num').classList.add('hidden');
-            document.querySelector('#edit_user_mail').classList.remove('hidden');
-            document.querySelector('#edit_user_phone').classList.remove('hidden');
+            const userMailElement = document.querySelector('.user-mail');
+            const userNumElement = document.querySelector('.user-num');
+            const editUserMailElement = document.querySelector('#edit_user_mail');
+            const editUserPhoneElement = document.querySelector('#edit_user_phone');
+
+            if (userMailElement) userMailElement.classList.add('hidden');
+            if (userNumElement) userNumElement.classList.add('hidden');
+            if (editUserMailElement) editUserMailElement.classList.remove('hidden');
+            if (editUserPhoneElement) editUserPhoneElement.classList.remove('hidden');
 
             // Показати форму збереження та приховати кнопку редагування
-            editForm.classList.remove('hidden');
-            editButton.classList.add('hidden');
+            if (editForm) editForm.classList.remove('hidden');
+            if (editButton) editButton.classList.add('hidden');
         });
     }
 
@@ -75,14 +92,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log('Cancel edit button clicked');
 
             // Приховати поля введення
-            document.querySelector('.user-mail').classList.remove('hidden');
-            document.querySelector('.user-num').classList.remove('hidden');
-            document.querySelector('#edit_user_mail').classList.add('hidden');
-            document.querySelector('#edit_user_phone').classList.add('hidden');
+            const userMailElement = document.querySelector('.user-mail');
+            const userNumElement = document.querySelector('.user-num');
+            const editUserMailElement = document.querySelector('#edit_user_mail');
+            const editUserPhoneElement = document.querySelector('#edit_user_phone');
+
+            if (userMailElement) userMailElement.classList.remove('hidden');
+            if (userNumElement) userNumElement.classList.remove('hidden');
+            if (editUserMailElement) editUserMailElement.classList.add('hidden');
+            if (editUserPhoneElement) editUserPhoneElement.classList.add('hidden');
 
             // Показати кнопку редагування та приховати форму збереження
-            editForm.classList.add('hidden');
-            editButton.classList.remove('hidden');
+            if (editForm) editForm.classList.add('hidden');
+            if (editButton) editButton.classList.remove('hidden');
         });
     }
 

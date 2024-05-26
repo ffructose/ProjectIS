@@ -1,7 +1,8 @@
+import axios from 'axios';
+
 let currentIndex = 0;
 const productsPerPage = 6;
 let goods = []; // Array to store fetched products
-import axios from 'axios';
 
 function createProductCard(product) {
     if (!product.good_name || !product.good_price) {
@@ -101,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loadMoreButton.addEventListener("click", loadMoreProducts);
     }
 
+    // Fetch data and pass it to loadProducts function
     axios.get('http://localhost:3000/data')
         .then(response => {
             console.log('Fetched data:', response.data); // Log the fetched data

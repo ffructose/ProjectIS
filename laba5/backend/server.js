@@ -243,14 +243,37 @@ app.post('/add-to-cart', authenticateToken, (req, res) => {
 });
 
 const addOrderItem = (orderId, goodId, res) => {
-    const orderItemQuery = 'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, 1) ON DUPLICATE KEY UPDATE order_item_quantity = order_item_quantity + 1';
-    connection.query(orderItemQuery, [orderId, goodId], (err, orderItemResults) => {
+    const checkItemQuery = 'SELECT * FROM order_items WHERE order_id = ? AND good_id = ?';
+    connection.query(checkItemQuery, [orderId, goodId], (err, results) => {
         if (err) {
-            console.error('Error adding order item:', err.message);
-            res.status(500).send('Server error: ' + err.message);
+            console.error('Error checking order item:', err.message);
+            res.status(500).send('Server error');
             return;
         }
-        res.status(201).send('Product added to cart');
+
+        if (results.length > 0) {
+            // Item already exists in cart, update quantity
+            const updateItemQuery = 'UPDATE order_items SET order_item_quantity = order_item_quantity + 1 WHERE order_id = ? AND good_id = ?';
+            connection.query(updateItemQuery, [orderId, goodId], (err, updateResults) => {
+                if (err) {
+                    console.error('Error updating order item:', err.message);
+                    res.status(500).send('Server error');
+                    return;
+                }
+                res.status(200).send('Product quantity updated');
+            });
+        } else {
+            // Item does not exist in cart, insert new item
+            const insertItemQuery = 'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, 1)';
+            connection.query(insertItemQuery, [orderId, goodId], (err, insertResults) => {
+                if (err) {
+                    console.error('Error adding order item:', err.message);
+                    res.status(500).send('Server error');
+                    return;
+                }
+                res.status(201).send('Product added to cart');
+            });
+        }
     });
 };
 
