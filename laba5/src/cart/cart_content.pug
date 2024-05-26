@@ -12,3 +12,55 @@ main
                 span.result-text SUMM TO PAYMENT:
                 span.result-price ₴198.00
             button.cart-button.myButton Proceed to Checkout
+    .order-box
+        .order-content
+            button.close-button x
+            .review-box
+                h3 Order Review
+                .order-item-list
+                    .order-item
+                        .name cupcake
+                        .amount 5
+                        .price 25.00
+                    .order-item
+                        .name cupcake
+                        .amount 5
+                        .price 25.00
+                    .order-item
+                        .name cupcake
+                        .amount 5
+                        .price 25.00
+                    
+                    
+                .full-price full price for order
+            .user-info-box
+                h3 Contact Information
+                form
+                    .ui-formRow
+                        label.uiLabel Enter your name:
+                        input(type="text" ).uiInput
+                    .ui-formRow
+                        label.uiLabel Enter your phone:
+                        input(type="text" ).uiInput
+                    .ui-formRow
+                        label.uiLabel Enter your mail:
+                        input(type="text" ).uiInput
+                    
+            .delivery-info-box
+                h3 Delivery Information
+                form
+                    .di-formRow
+                        label.uiLabel Enter your street:
+                        input(type="text" ).diInput
+                    .di-formRow
+                        label.uiLabel Enter your house number:
+                        input(type="text" ).diInput
+                    .di-formRow
+                        label.uiLabel Enter your flat number:
+                        input(type="text" ).diInput
+                    .di-formRow
+                        label.uiLabel  Enter your postal code:
+                        input(type="text" ).diInput
+
+            button(type="submit").myButton.order-submit-button Submit Order
+

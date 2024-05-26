@@ -12,6 +12,7 @@ import './scss/liked_content.scss'
 import './scss/profile_content.scss'
 import './scss/cart_content.scss'
 import './scss/logreg.scss'
+import './scss/order.scss'
 
 //---------------JAVASCRIPT---------------//
 import './custom/custom.js';  

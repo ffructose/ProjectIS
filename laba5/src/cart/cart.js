@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         loadCartFromServer(token);
     }
+
+    const proceedToCheckoutButton = document.querySelector('.cart-button');
+    if (proceedToCheckoutButton) {
+        proceedToCheckoutButton.addEventListener('click', proceedToCheckout);
+    }
+
+    const closeButton = document.querySelector('.close-button');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeOrderBox);
+    }
 });
 
 function loadCartFromLocalStorage() {
@@ -180,4 +190,34 @@ function updateTotalPrice() {
         totalPrice += goodPrice * quantity;
     });
     document.querySelector('.result-price').textContent = `₴${totalPrice.toFixed(2)}`;
+}
+
+function proceedToCheckout() {
+    const orderBox = document.querySelector('.order-box');
+    const token = localStorage.getItem('token');
+    if (token) {
+        axios.get('http://localhost:3000/user', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            const user = response.data;
+            document.querySelector('.user-info-box input[name="name"]').value = user.user_name || '';
+            document.querySelector('.user-info-box input[name="phone"]').value = user.user_phone || '';
+            document.querySelector('.user-info-box input[name="mail"]').value = user.user_mail || '';
+        })
+        .catch(error => {
+            console.error('Error fetching user info:', error);
+        });
+    }
+
+    document.body.classList.add('inactive');
+    orderBox.classList.add('show');
+}
+
+function closeOrderBox() {
+    const orderBox = document.querySelector('.order-box');
+    document.body.classList.remove('inactive');
+    orderBox.classList.remove('show');
 }
