@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 let currentIndex = 0;
-const productsPerPage = 9;
+const productsPerPage = 6;
 let goods = [];
 let allGoods = [];
 let likedItems = [];
@@ -157,8 +157,12 @@ function loadMoreProducts() {
     currentIndex += productsPerPage;
 
     const loadMoreButton = document.querySelector(".loadmore-button");
-    if (loadMoreButton && currentIndex >= goods.length) {
-        loadMoreButton.style.display = "none";
+    if (loadMoreButton) {
+        if (currentIndex >= goods.length) {
+            loadMoreButton.style.display = "none";
+        } else {
+            loadMoreButton.style.display = "block";
+        }
     }
 
     attachEventListeners();
