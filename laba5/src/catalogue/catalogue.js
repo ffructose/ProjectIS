@@ -6,6 +6,7 @@ let goods = [];
 let allGoods = [];
 let likedItems = [];
 let selectedTypes = [];
+let currentSortType = '';
 
 document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem('token');
@@ -60,7 +61,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             sortMenu.classList.add('hidden');
         });
     }
-
 
     const sortButton = document.getElementById('sort-button');
     const sortMenu = document.querySelector('.sort-menu');
@@ -259,6 +259,8 @@ function handleSearch(event) {
 }
 
 function handleSort(sortType) {
+    currentSortType = sortType; // Save the current sort type
+
     switch (sortType) {
         case 'price-asc':
             goods.sort((a, b) => a.good_price - b.good_price);
@@ -283,5 +285,10 @@ function filterProducts() {
     } else {
         goods = allGoods.filter(product => selectedTypes.includes(product.type_id));
     }
-    loadProducts(); // Load the filtered results
+
+    if (currentSortType) {
+        handleSort(currentSortType); // Apply the current sort type after filtering
+    } else {
+        loadProducts(); // Load the filtered results
+    }
 }
