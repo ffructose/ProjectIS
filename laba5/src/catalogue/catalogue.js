@@ -184,27 +184,54 @@ function addToCart(event) {
     if (!productCard) return;
 
     const goodId = productCard.dataset.goodId;
-    const productName = productCard.querySelector('h3').textContent;
     const token = localStorage.getItem('token');
-    if (!token) {
-        alert('You need to log in to add products to the cart.');
-        return;
-    }
 
-    axios.post('http://localhost:3000/add-to-cart', { good_id: goodId }, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        console.log('Product added to cart:', response.data);
-        showNotification(productName);
-    })
-    .catch(error => {
-        console.error('Error adding product to cart:', error);
-        alert('Error adding product to cart');
-    });
+    if (token) {
+        // User is logged in
+        axios.post('http://localhost:3000/add-to-cart', { good_id: goodId }, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            console.log('Product added to cart:', response.data);
+            showNotification(productCard.querySelector('h3').textContent);
+        })
+        .catch(error => {
+            console.error('Error adding product to cart:', error);
+            alert('Error adding product to cart');
+        });
+    } else {
+        // User is not logged in, use localStorage
+        axios.get(`http://localhost:3000/product/${goodId}`)
+            .then(response => {
+                const product = response.data;
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.good_id === product.good_id);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        good_id: product.good_id,
+                        good_name: product.good_name,
+                        good_price: product.good_price,
+                        photo_path: product.photo_path,
+                        quantity: 1
+                    });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                showNotification(product.good_name);
+            })
+            .catch(error => {
+                console.error('Error fetching product details:', error);
+                alert('Error adding product to cart');
+            });
+    }
 }
+
+
 
 function toggleLike(event) {
     event.preventDefault();

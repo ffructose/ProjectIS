@@ -414,6 +414,27 @@ app.get('/types', (req, res) => {
     });
 });
 
+app.get('/product/:id', (req, res) => {
+    const goodId = req.params.id;
+    const query = `
+        SELECT good.good_id, good.good_name, good.good_price, good.photo_id, photo.photo_path
+        FROM good
+        LEFT JOIN photo ON good.photo_id = photo.photo_id
+        WHERE good.good_id = ?
+    `;
+    connection.query(query, [goodId], (err, results) => {
+        if (err) {
+            console.error('Error fetching product:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        if (results.length === 0) {
+            res.status(404).send('Product not found');
+            return;
+        }
+        res.json(results[0]);
+    });
+});
 
 
 app.listen(port, () => {
