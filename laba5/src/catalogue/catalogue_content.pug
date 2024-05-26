@@ -10,12 +10,17 @@ main
                 input(type="text" placeholder="Search").search-class
                 a(href="#").icon-filter.button-fs
                     img(src=require('../photo/filterIcon.png') alt="Filter Icon")
-                a(href="#").icon-sort.button-fs
+                a(href="#").icon-sort.button-fs#sort-button
                     img(src=require('../photo/sortIcon.png') alt="Sort Icon")
+                .sort-menu.hidden
+                    ul
+                        li(data-sort="price-asc") Сортувати за ціною (зростання)
+                        li(data-sort="price-desc") Сортувати за ціною (спадання)
+                        li(data-sort="name-asc") Сортувати за назвою (зростання)
+                        li(data-sort="name-desc") Сортувати за назвою (спадання)
 
             .products
-                
 
         button.loadmore-button.myButton Load More
     .notification(id="notification")
-        span.notification-text 
+        span.notification-text

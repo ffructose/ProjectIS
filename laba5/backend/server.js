@@ -341,6 +341,61 @@ app.delete('/cart', authenticateToken, (req, res) => {
 });
 
 
+// Like a product
+app.post('/like', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { good_id } = req.body;
+
+    const query = 'INSERT IGNORE INTO user_likes (user_id, good_id) VALUES (?, ?)';
+    connection.query(query, [userId, good_id], (err, results) => {
+        if (err) {
+            console.error('Error liking product:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
+        res.status(201).send('Product liked');
+    });
+});
+
+// Unlike a product
+app.post('/unlike', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { good_id } = req.body;
+
+    const query = 'DELETE FROM user_likes WHERE user_id = ? AND good_id = ?';
+    connection.query(query, [userId, good_id], (err, results) => {
+        if (err) {
+            console.error('Error unliking product:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
+        res.status(200).send('Product unliked');
+    });
+});
+
+
+
+// Get liked products
+app.get('/liked', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+
+    const query = `
+        SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path
+        FROM user_likes
+        INNER JOIN good ON user_likes.good_id = good.good_id
+        LEFT JOIN photo ON good.photo_id = photo.photo_id
+        WHERE user_likes.user_id = ?
+    `;
+    connection.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching liked items:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
