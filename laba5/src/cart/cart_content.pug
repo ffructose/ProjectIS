@@ -2,65 +2,47 @@ a(name="main")
 main 
     img(src=require('../photo/header-wave.svg') alt="Header Wave").headerWaveImg 
     .cart-box
-
         .content
             .title-text Your Cart
-
             .cart-list 
-
             .result-box 
                 span.result-text SUMM TO PAYMENT:
                 span.result-price ₴198.00
-            button.cart-button.myButton Proceed to Checkout
+            button.cart-button.myButton.disabled Proceed to Checkout
     .order-box
         .order-content
             button.close-button x
             .review-box
                 h3 Order Review
                 .order-item-list
-                    .order-item
-                        .name cupcake
-                        .amount 5
-                        .price 25.00
-                    .order-item
-                        .name cupcake
-                        .amount 5
-                        .price 25.00
-                    .order-item
-                        .name cupcake
-                        .amount 5
-                        .price 25.00
-                    
-                    
                 .full-price full price for order
             .user-info-box
                 h3 Contact Information
                 form
                     .ui-formRow
                         label.uiLabel Enter your name:
-                        input(type="text" ).uiInput
+                        input(type="text" name="name").uiInput
                     .ui-formRow
                         label.uiLabel Enter your phone:
-                        input(type="text" ).uiInput
+                        input(type="text" name="phone").uiInput
                     .ui-formRow
                         label.uiLabel Enter your mail:
-                        input(type="text" ).uiInput
-                    
+                        input(type="text" name="mail").uiInput
             .delivery-info-box
                 h3 Delivery Information
                 form
                     .di-formRow
                         label.uiLabel Enter your street:
-                        input(type="text" ).diInput
+                        input(type="text" name="street").diInput
                     .di-formRow
                         label.uiLabel Enter your house number:
-                        input(type="text" ).diInput
+                        input(type="text" name="house-number").diInput
                     .di-formRow
                         label.uiLabel Enter your flat number:
-                        input(type="text" ).diInput
+                        input(type="text" name="flat-number").diInput
                     .di-formRow
-                        label.uiLabel  Enter your postal code:
-                        input(type="text" ).diInput
-
+                        label.uiLabel Enter your postal code:
+                        input(type="text" name="postal-code").diInput
             button(type="submit").myButton.order-submit-button Submit Order
-
+    .notification(id="notification")
+        span.notification-text

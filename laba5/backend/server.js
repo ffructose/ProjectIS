@@ -61,6 +61,7 @@ app.get('/sizes', (req, res) => {
         res.json(results);
     });
 });
+
 app.get('/decors', (req, res) => {
     const query = `
         SELECT decor.decor_id, decor.decor_name, decor.decor_price FROM decor
@@ -74,6 +75,7 @@ app.get('/decors', (req, res) => {
         res.json(results);
     });
 });
+
 app.get('/tastes', (req, res) => {
     const query = `
         SELECT taste.taste_id, taste.taste_name, taste.taste_price FROM taste
@@ -217,7 +219,7 @@ app.post('/add-to-cart', authenticateToken, (req, res) => {
     const userId = req.user.userId;
     const { good_id } = req.body;
 
-    const orderQuery = 'SELECT * FROM orders WHERE user_id = ? AND order_status = "pending"';
+    const orderQuery = 'SELECT * FROM orders WHERE user_id = ? AND order_status = "inCart"';
     connection.query(orderQuery, [userId], (err, orderResults) => {
         if (err) {
             console.error('Error fetching order:', err.message);
@@ -227,7 +229,7 @@ app.post('/add-to-cart', authenticateToken, (req, res) => {
 
         let orderId;
         if (orderResults.length === 0) {
-            const createOrderQuery = 'INSERT INTO orders (user_id, order_status) VALUES (?, "pending")';
+            const createOrderQuery = 'INSERT INTO orders (user_id, order_status) VALUES (?, "inCart")';
             connection.query(createOrderQuery, [userId], (err, createOrderResults) => {
                 if (err) {
                     console.error('Error creating order:', err.message);
@@ -289,7 +291,7 @@ app.get('/cart', authenticateToken, (req, res) => {
         INNER JOIN good ON order_items.good_id = good.good_id
         LEFT JOIN photo ON good.photo_id = photo.photo_id
         LEFT JOIN type ON good.type_id = type.type_id
-        WHERE orders.user_id = ? AND orders.order_status = "pending"
+        WHERE orders.user_id = ? AND orders.order_status = "inCart"
     `;
     connection.query(query, [userId], (err, results) => {
         if (err) {
@@ -311,7 +313,7 @@ app.put('/cart', authenticateToken, (req, res) => {
         UPDATE order_items 
         INNER JOIN orders ON order_items.order_id = orders.order_id 
         SET order_item_quantity = ? 
-        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "pending"
+        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "inCart"
     `;
     connection.query(query, [quantity, userId, good_id], (err, results) => {
         if (err) {
@@ -332,7 +334,7 @@ app.delete('/cart', authenticateToken, (req, res) => {
         DELETE order_items 
         FROM order_items 
         INNER JOIN orders ON order_items.order_id = orders.order_id 
-        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "pending"
+        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "inCart"
     `;
     connection.query(query, [userId, good_id], (err, results) => {
         if (err) {
@@ -435,6 +437,62 @@ app.get('/product/:id', (req, res) => {
         res.json(results[0]);
     });
 });
+
+// Ensure this is present in your server.js
+app.post('/submit-order', async (req, res) => {
+    const { user_login, user_phone, user_mail, cartItems, isGuest } = req.body;
+
+    if (isGuest) {
+        // Handle guest user order submission
+        const connection = await mysql.createConnection(dbConfig);
+
+        try {
+            const [orderResult] = await connection.execute(
+                'INSERT INTO orders (order_status, user_login, user_phone, user_mail) VALUES (?, ?, ?, ?)',
+                ['beingProcessed', user_login, user_phone, user_mail]
+            );
+
+            const orderId = orderResult.insertId;
+
+            for (const item of cartItems) {
+                await connection.execute(
+                    'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, ?)',
+                    [orderId, item.good_id, item.quantity]
+                );
+            }
+
+            res.status(200).send('Order submitted and cart cleared');
+        } catch (err) {
+            console.error('Error processing guest order:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+        } finally {
+            await connection.end();
+        }
+    } else {
+        // Handle logged-in user order submission
+        const userId = req.user.userId;
+
+        try {
+            const connection = mysql.createConnection(dbConfig);
+
+            await connection.execute(
+                'UPDATE orders SET order_status = "beingProcessed" WHERE user_id = ? AND order_status = "inCart"',
+                [userId]
+            );
+
+            await connection.execute(
+                'DELETE FROM order_items WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ? AND order_status = "beingProcessed")',
+                [userId]
+            );
+
+            res.status(200).send('Order submitted and cart cleared');
+        } catch (err) {
+            console.error('Error processing order:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+        }
+    }
+});
+
 
 
 app.listen(port, () => {
