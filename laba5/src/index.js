@@ -19,21 +19,4 @@ import './catalogue/catalogue.js';
 import './profile/profile.js'; 
 import './profile/login.js'; 
 import './profile/register.js'; 
-
-import { loadProducts } from './catalogue/catalogue';
-
-// Import Axios
-import axios from 'axios';
-
-// Function to fetch data and pass it to catalogue.js
-document.addEventListener('DOMContentLoaded', () => {
-    axios.get('http://localhost:3000/data')
-        .then(response => {
-            console.log('Fetched data:', response.data); // Log the fetched data
-            // Pass the fetched data to loadProducts function
-            loadProducts(response.data);
-        })
-        .catch(error => {
-            console.error('There was an error fetching the data!', error);
-        });
-});
+import './cart/cart.js'; 

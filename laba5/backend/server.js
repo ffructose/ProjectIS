@@ -208,6 +208,116 @@ app.put('/user', authenticateToken, (req, res) => {
     });
 });
 
+
+
+// Add to cart
+app.post('/add-to-cart', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { good_id } = req.body;
+
+    const orderQuery = 'SELECT * FROM orders WHERE user_id = ? AND order_status = "pending"';
+    connection.query(orderQuery, [userId], (err, orderResults) => {
+        if (err) {
+            console.error('Error fetching order:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
+
+        let orderId;
+        if (orderResults.length === 0) {
+            const createOrderQuery = 'INSERT INTO orders (user_id, order_status) VALUES (?, "pending")';
+            connection.query(createOrderQuery, [userId], (err, createOrderResults) => {
+                if (err) {
+                    console.error('Error creating order:', err.message);
+                    res.status(500).send('Server error: ' + err.message);
+                    return;
+                }
+                orderId = createOrderResults.insertId;
+                addOrderItem(orderId, good_id, res);
+            });
+        } else {
+            orderId = orderResults[0].order_id;
+            addOrderItem(orderId, good_id, res);
+        }
+    });
+});
+
+const addOrderItem = (orderId, goodId, res) => {
+    const orderItemQuery = 'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, 1) ON DUPLICATE KEY UPDATE order_item_quantity = order_item_quantity + 1';
+    connection.query(orderItemQuery, [orderId, goodId], (err, orderItemResults) => {
+        if (err) {
+            console.error('Error adding order item:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
+        res.status(201).send('Product added to cart');
+    });
+};
+
+app.get('/cart', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+
+    const query = `
+        SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path, order_items.order_item_quantity
+        FROM orders
+        INNER JOIN order_items ON orders.order_id = order_items.order_id
+        INNER JOIN good ON order_items.good_id = good.good_id
+        LEFT JOIN photo ON good.photo_id = photo.photo_id
+        WHERE orders.user_id = ? AND orders.order_status = "pending"
+    `;
+    connection.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching cart items:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+// Update cart item quantity
+app.put('/cart', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { good_id, quantity } = req.body;
+
+    const query = `
+        UPDATE order_items 
+        INNER JOIN orders ON order_items.order_id = orders.order_id 
+        SET order_item_quantity = ? 
+        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "pending"
+    `;
+    connection.query(query, [quantity, userId, good_id], (err, results) => {
+        if (err) {
+            console.error('Error updating cart item:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.status(200).send('Cart item updated');
+    });
+});
+
+// Remove cart item
+app.delete('/cart', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { good_id } = req.body;
+
+    const query = `
+        DELETE order_items 
+        FROM order_items 
+        INNER JOIN orders ON order_items.order_id = orders.order_id 
+        WHERE orders.user_id = ? AND order_items.good_id = ? AND orders.order_status = "pending"
+    `;
+    connection.query(query, [userId, good_id], (err, results) => {
+        if (err) {
+            console.error('Error removing cart item:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.status(200).send('Cart item removed');
+    });
+});
+
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
