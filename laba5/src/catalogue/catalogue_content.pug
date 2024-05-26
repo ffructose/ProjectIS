@@ -8,16 +8,18 @@ main
 
             .search-container
                 input(type="text" placeholder="Search").search-class
-                a(href="#").icon-filter.button-fs
+                a(href="#").icon-filter.button-fs#filter-button
                     img(src=require('../photo/filterIcon.png') alt="Filter Icon")
+                .filter-menu.hidden
+                    .filter-container
                 a(href="#").icon-sort.button-fs#sort-button
                     img(src=require('../photo/sortIcon.png') alt="Sort Icon")
                 .sort-menu.hidden
                     ul
-                        li(data-sort="price-asc") Сортувати за ціною (зростання)
-                        li(data-sort="price-desc") Сортувати за ціною (спадання)
-                        li(data-sort="name-asc") Сортувати за назвою (зростання)
-                        li(data-sort="name-desc") Сортувати за назвою (спадання)
+                        li(data-sort="price-asc") sort by price (lower to higher)
+                        li(data-sort="price-desc") sort by price (higher to lower)
+                        li(data-sort="name-asc") sort by name (lower to higher)
+                        li(data-sort="name-desc") sort by name (higher to lower)
 
             .products
 

@@ -5,6 +5,7 @@ const productsPerPage = 9;
 let goods = [];
 let allGoods = [];
 let likedItems = [];
+let selectedTypes = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem('token');
@@ -21,10 +22,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
+    try {
+        const typesResponse = await axios.get('http://localhost:3000/types');
+        selectedTypes = typesResponse.data.map(type => type.type_id); // Initially select all types
+        loadFilterOptions(typesResponse.data);
+    } catch (error) {
+        console.error('Error fetching product types:', error);
+    }
+
     axios.get('http://localhost:3000/data')
         .then(response => {
             allGoods = response.data; // Save the original product list
-            loadProducts(response.data);
+            goods = allGoods;
+            loadProducts();
         })
         .catch(error => {
             console.error('There was an error fetching the data!', error);
@@ -41,7 +51,68 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (searchInput) {
         searchInput.addEventListener('input', handleSearch);
     }
+
+    const filterButton = document.getElementById('filter-button');
+    const filterMenu = document.querySelector('.filter-menu');
+    if (filterButton && filterMenu) {
+        filterButton.addEventListener('click', () => {
+            filterMenu.classList.toggle('hidden');
+            sortMenu.classList.add('hidden');
+        });
+    }
+
+
+    const sortButton = document.getElementById('sort-button');
+    const sortMenu = document.querySelector('.sort-menu');
+    if (sortButton && sortMenu) {
+        sortButton.addEventListener('click', () => {
+            sortMenu.classList.toggle('hidden');
+            filterMenu.classList.add('hidden');
+        });
+
+        sortMenu.querySelectorAll('li').forEach(item => {
+            item.addEventListener('click', (event) => {
+                const sortType = event.target.dataset.sort;
+                handleSort(sortType);
+                sortMenu.classList.add('hidden');
+            });
+        });
+    }
 });
+
+function loadFilterOptions(types) {
+    const filterContainer = document.querySelector('.filter-container');
+    if (!filterContainer) return;
+
+    types.forEach((type, index) => {
+        const filterElement = document.createElement('div');
+        filterElement.className = 'filter';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `filter-${index}`;
+        checkbox.dataset.typeId = type.type_id;
+        checkbox.checked = true; // Initially check all checkboxes
+
+        const label = document.createElement('label');
+        label.textContent = type.type_name;
+        label.htmlFor = `filter-${index}`;
+
+        filterElement.appendChild(label);
+        filterElement.appendChild(checkbox);
+
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                selectedTypes.push(parseInt(checkbox.dataset.typeId));
+            } else {
+                selectedTypes = selectedTypes.filter(id => id !== parseInt(checkbox.dataset.typeId));
+            }
+            filterProducts();
+        });
+
+        filterContainer.appendChild(filterElement);
+    });
+}
 
 function createProductCard(product) {
     if (!product.good_name || !product.good_price) {
@@ -174,17 +245,43 @@ function showNotification(productName) {
     }, 3000);
 }
 
-function loadProducts(fetchedGoods) {
-    goods = fetchedGoods;
+function loadProducts() {
+    const productsContainer = document.querySelector(".products");
+    productsContainer.innerHTML = ''; // Clear existing products
+    currentIndex = 0; // Reset the current index
     loadMoreProducts();
 }
 
 function handleSearch(event) {
     const searchQuery = event.target.value.toLowerCase();
-    const filteredGoods = allGoods.filter(product => product.good_name.toLowerCase().includes(searchQuery));
-    
-    currentIndex = 0; // Reset the current index
-    document.querySelector('.products').innerHTML = ''; // Clear existing products
-    goods = filteredGoods; // Set goods to filtered results
-    loadMoreProducts(); // Load the filtered results
+    goods = allGoods.filter(product => product.good_name.toLowerCase().includes(searchQuery));
+    filterProducts(); // Apply filter after search
+}
+
+function handleSort(sortType) {
+    switch (sortType) {
+        case 'price-asc':
+            goods.sort((a, b) => a.good_price - b.good_price);
+            break;
+        case 'price-desc':
+            goods.sort((a, b) => b.good_price - a.good_price);
+            break;
+        case 'name-asc':
+            goods.sort((a, b) => a.good_name.localeCompare(b.good_name));
+            break;
+        case 'name-desc':
+            goods.sort((a, b) => b.good_name.localeCompare(a.good_name));
+            break;
+    }
+
+    loadProducts(); // Load the sorted results
+}
+
+function filterProducts() {
+    if (selectedTypes.length === 0) {
+        goods = [];
+    } else {
+        goods = allGoods.filter(product => selectedTypes.includes(product.type_id));
+    }
+    loadProducts(); // Load the filtered results
 }

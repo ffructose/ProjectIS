@@ -15,6 +15,127 @@ main {
     }
 }
 
+.sort-menu {
+    justify-self: end;
+    background-color: white;
+    grid-area: 3/1/4/5;
+    margin-top: 30px;
+    justify-self: start;
+    width: 80%;
+    border: 3px solid $dark-yellow;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 24px;
+    outline: none;
+    color: black;
+    font-family: "Fredoka";
+    margin-left: 15px;
+    align-self: center;
+
+    ul {
+        li {
+            margin: 5px;
+            background-color: $yellow;
+            border: 2px solid $pink;
+            border-radius: 20px;
+            padding: 5px;
+
+            &:hover {
+                background-color: $mid-yellow;
+                cursor: pointer;
+            }
+
+            &:active {
+                color: $pink;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+
+.filter-menu {
+    justify-self: end;
+    background-color: white;
+    grid-area: 3/1/4/5;
+    margin-top: 30px;
+    justify-self: start;
+    width: 80%;
+    border: 3px solid $dark-yellow;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 24px;
+    outline: none;
+    color: black;
+    font-family: "Fredoka";
+    margin-left: 15px;
+    align-self: center;
+}
+
+.filter-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+.filter {
+
+
+    border: 3px solid $dark-yellow;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    align-items: center;
+    display: grid;
+    font-size: 13px;
+
+    span {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    input[type="checkbox"] {
+        grid-column: 2;
+        justify-self: end;
+        cursor: pointer;
+
+        width: 20px;
+        height: 20px;
+        border: 2px solid $dark-yellow;
+        border-radius: 3px;
+        background-color: white;
+        font-size: 18px;
+        font-weight: bold;
+        color: black;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        appearance: none;
+        /* Очищуємо стандартний вигляд чекбоксу */
+        position: relative;
+    }
+
+    input[type="checkbox"]:checked {
+        background-color: $mid-yellow;
+        border-color: $dark-yellow;
+    }
+
+    input[type="checkbox"]:checked::before {
+        content: '✖';
+        /* Unicode символ хрестика */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $pink;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1;
+    }
+}
+
+
+
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {
     .catalogue-box {

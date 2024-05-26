@@ -32,7 +32,7 @@ app.use('/photos', express.static(path.join(__dirname, '../src/photo_for_db')));
 
 app.get('/data', (req, res) => {
     const query = `
-        SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path
+        SELECT good.good_id, good.good_name, good.good_price, good.type_id, photo.photo_path
         FROM good
         LEFT JOIN photo ON good.photo_id = photo.photo_id
     `;
@@ -45,6 +45,8 @@ app.get('/data', (req, res) => {
         res.json(results);
     });
 });
+
+
 
 app.get('/sizes', (req, res) => {
     const query = `
@@ -281,11 +283,12 @@ app.get('/cart', authenticateToken, (req, res) => {
     const userId = req.user.userId;
 
     const query = `
-        SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path, order_items.order_item_quantity
+        SELECT good.good_id, good.good_name, good.good_price, type.type_name, photo.photo_path, order_items.order_item_quantity
         FROM orders
         INNER JOIN order_items ON orders.order_id = order_items.order_id
         INNER JOIN good ON order_items.good_id = good.good_id
         LEFT JOIN photo ON good.photo_id = photo.photo_id
+        LEFT JOIN type ON good.type_id = type.type_id
         WHERE orders.user_id = ? AND orders.order_status = "pending"
     `;
     connection.query(query, [userId], (err, results) => {
@@ -297,6 +300,7 @@ app.get('/cart', authenticateToken, (req, res) => {
         res.json(results);
     });
 });
+
 
 // Update cart item quantity
 app.put('/cart', authenticateToken, (req, res) => {
@@ -380,10 +384,11 @@ app.get('/liked', authenticateToken, (req, res) => {
     const userId = req.user.userId;
 
     const query = `
-        SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path
+        SELECT good.good_id, good.good_name, good.good_price, type.type_name, photo.photo_path
         FROM user_likes
         INNER JOIN good ON user_likes.good_id = good.good_id
         LEFT JOIN photo ON good.photo_id = photo.photo_id
+        LEFT JOIN type ON good.type_id = type.type_id
         WHERE user_likes.user_id = ?
     `;
     connection.query(query, [userId], (err, results) => {
@@ -395,6 +400,21 @@ app.get('/liked', authenticateToken, (req, res) => {
         res.json(results);
     });
 });
+
+
+app.get('/types', (req, res) => {
+    const query = 'SELECT type_id, type_name FROM type';
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching product types:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
