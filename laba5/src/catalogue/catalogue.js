@@ -7,6 +7,7 @@ let allGoods = [];
 let likedItems = [];
 let selectedTypes = [];
 let currentSortType = '';
+let searchQuery = '';
 
 document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem('token');
@@ -253,9 +254,8 @@ function loadProducts() {
 }
 
 function handleSearch(event) {
-    const searchQuery = event.target.value.toLowerCase();
-    goods = allGoods.filter(product => product.good_name.toLowerCase().includes(searchQuery));
-    filterProducts(); // Apply filter after search
+    searchQuery = event.target.value.toLowerCase();
+    filterProducts(); // Apply filter and sort after search
 }
 
 function handleSort(sortType) {
@@ -283,7 +283,7 @@ function filterProducts() {
     if (selectedTypes.length === 0) {
         goods = [];
     } else {
-        goods = allGoods.filter(product => selectedTypes.includes(product.type_id));
+        goods = allGoods.filter(product => selectedTypes.includes(product.type_id) && product.good_name.toLowerCase().includes(searchQuery));
     }
 
     if (currentSortType) {
