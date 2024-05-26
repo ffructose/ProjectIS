@@ -15,7 +15,16 @@ main {
         margin-top: -1px;
     }
 }
+.hidden {
+    display: none;
+}
 
+.hiddenFORM {
+    display: none;
+}
+.profile-login-register{
+    height: 100vh;
+}
 /* ---------------Телефон--------------- */
 @media (min-width: 100px) {
     .profile-box {

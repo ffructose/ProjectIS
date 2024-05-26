@@ -1,89 +1,15 @@
-console.log("try.js loaded");
-
+console.log("custom.js loaded");
+import axios from 'axios';
 // sizes list
 let sizes = [];
-sizes[0] = {
-    name: "500 g",
-    price: 500.00
-};
-sizes[1] = {
-    name: "800 g",
-    price: 800.00
-};
-sizes[2] = {
-    name: "1 kg",
-    price: 1000.00
-};
-sizes[3] = {
-    name: "1.5 kg",
-    price: 1500.00
-};
-sizes[4] = {
-    name: "2 kg",
-    price: 2000.00
-};
-sizes[5] = {
-    name: "2.5 kg",
-    price: 2500.00
-};
-sizes[6] = {
-    name: "3 kg",
-    price: 3000.00
-};
 
 // tastes list
 let tastes = [];
-tastes[0] = {
-    name: "coconut",
-    price: 80.90
-};
-tastes[1] = {
-    name: "mangoe",
-    price: 100.90
-};
-tastes[2] = {
-    name: "pineapple",
-    price: 120.90
-};
-tastes[3] = {
-    name: "blueberry",
-    price: 150.90
-};
-tastes[4] = {
-    name: "peach",
-    price: 150.90
-};
-tastes[5] = {
-    name: "chocolate",
-    price: 150.90
-};
-tastes[6] = {
-    name: "cherry",
-    price: 150.90
-};
+
 
 // decors list
 let decors = [];
-decors[0] = {
-    name: "flowers",
-    price: 80.90
-};
-decors[1] = {
-    name: "fruits",
-    price: 100.90
-};
-decors[2] = {
-    name: "chocoballs",
-    price: 120.90
-};
-decors[3] = {
-    name: "cream plain",
-    price: 150.90
-};
-decors[4] = {
-    name: "cream words",
-    price: 150.90
-};
+
 
 let basePrice = 0.00;
 let selectedSizePrice = 0;
@@ -94,7 +20,7 @@ let isTasteSelected = false;
 let isDecorSelected = false;
 
 function updateTotalPrice() {
-    const totalPrice = basePrice + (selectedTastesPrice + selectedDecorsPrice) + selectedSizePrice * 1.3;
+    const totalPrice = basePrice + (selectedTastesPrice*selectedSizePrice*0.5 + selectedDecorsPrice*selectedSizePrice*0.5) + selectedSizePrice * 35.3;
     document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
     updateSubmitButtonState();
 }
@@ -116,8 +42,8 @@ function populateSizes() {
     sizes.forEach((size, index) => {
         const sizeElement = document.createElement('div');
         sizeElement.className = 'size';
-        sizeElement.textContent = size.name;
-        sizeElement.dataset.price = size.price;
+        sizeElement.textContent = size.size_name;
+        sizeElement.dataset.price = size.size_price;
         sizeElement.addEventListener('click', function () {
             if (sizeElement.classList.contains('selected')) {
                 sizeElement.classList.remove('selected');
@@ -126,7 +52,7 @@ function populateSizes() {
             } else {
                 document.querySelectorAll('.size').forEach(el => el.classList.remove('selected'));
                 sizeElement.classList.add('selected');
-                selectedSizePrice = parseFloat(size.price);
+                selectedSizePrice = parseFloat(size.size_price);
                 isSizeSelected = true;
             }
             updateTotalPrice();
@@ -144,11 +70,11 @@ function populateTastes() {
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.dataset.price = taste.price;
+        checkbox.dataset.price = taste.taste_price;
         checkbox.id = `taste-${index}`;
 
         const label = document.createElement('label');
-        label.textContent = taste.name;
+        label.textContent = taste.taste_name;
         label.htmlFor = `taste-${index}`;
 
         tasteElement.appendChild(label);
@@ -178,11 +104,11 @@ function populateDecors() {
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.dataset.price = decor.price;
+        checkbox.dataset.price = decor.decor_price;
         checkbox.id = `decor-${index}`;
 
         const label = document.createElement('label');
-        label.textContent = decor.name;
+        label.textContent = decor.decor_name;
         label.htmlFor = `decor-${index}`;
 
         decorElement.appendChild(label);
@@ -219,4 +145,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.custom-button.myButton').addEventListener('click', showNotification);
     updateSubmitButtonState(); // Ініціалізація стану кнопки
+});
+
+function loadProductsSizes(fetchedData) {
+    sizes = fetchedData; 
+    populateSizes();
+}
+function loadProductsTastes(fetchedData) {
+    tastes = fetchedData; 
+    populateTastes();
+}
+function loadProductsDecors(fetchedData) {
+    decors = fetchedData; 
+    populateDecors();
+}
+
+console.log(sizes);
+console.log(decors);
+console.log(tastes);
+// Function to fetch data 
+document.addEventListener('DOMContentLoaded', () => {
+    axios.get('http://localhost:3000/sizes')
+        .then(response => {
+            console.log('Fetched data:', response.data); // Log the fetched data
+            // Pass the fetched data to loadProducts function
+            loadProductsSizes(response.data);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the data!', error);
+        });
+});
+
+// Function to fetch data 
+document.addEventListener('DOMContentLoaded', () => {
+    axios.get('http://localhost:3000/tastes')
+        .then(response => {
+            console.log('Fetched data:', response.data); // Log the fetched data
+            // Pass the fetched data to loadProducts function
+            loadProductsTastes(response.data);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the data!', error);
+        });
+});
+// Function to fetch data 
+document.addEventListener('DOMContentLoaded', () => {
+    axios.get('http://localhost:3000/decors')
+        .then(response => {
+            console.log('Fetched data:', response.data); // Log the fetched data
+            // Pass the fetched data to loadProducts function
+            loadProductsDecors(response.data);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the data!', error);
+        });
 });

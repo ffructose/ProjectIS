@@ -1,0 +1,26 @@
+doctype html
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title YUMICO
+    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+    script(src="profile.js")
+  body 
+    include ../header.pug 
+    main 
+        img(src=require('../photo/header-wave.svg') alt="Header Wave").headerWaveImg 
+        .loginblock
+          form#loginForm
+            .login-title Log into your account
+            div.logRow
+              label(for="user_login").logLabel login:
+              input(type="text" id="user_login" name="user_login" required).logInput
+            div.logRow
+              label(for="user_password").logLabel password:
+              input(type="password" id="user_password" name="user_password" required).logInput
+            button(type="submit").myButton.logButton Login
+    include ../footer.pug
+

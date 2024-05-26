@@ -1,0 +1,79 @@
+$black: #0C1113;
+$gray: rgba(125, 125, 125, 1);
+$pink: rgba(255, 51, 88, 1);
+$yellow: rgba(255, 240, 198, 1);
+$dark-yellow: rgba(255, 199, 0, 1);
+$mid-yellow: rgba(251, 217, 157, 1);
+$white: #FFFFFF;
+
+.BLOCKKK {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+
+    .login-button {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    .register-button {
+        grid-column: 2;
+        justify-self: end;
+    }
+}
+
+.loginblock {
+    display: grid;
+    justify-content: center;
+    height: 100vh;
+
+    .login-title {
+        grid-area: 1/1/1/3;
+        margin-top: 30px;
+        padding-bottom: 50px;
+        justify-self: center;
+
+        font-family: "Fredoka";
+        color: $pink;
+        font-size: 25px;
+
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+    }
+
+    .logLabel {
+        margin-top: 25px;
+        grid-column: 1;
+        font-family: "Fredoka";
+        font-size: 25px;
+        justify-self: start;
+    }
+
+    .logInput {
+        margin-top: 25px;
+        grid-column: 2;
+        justify-self: end;
+        border: 2px solid $pink;
+        border-radius: 20px;
+        font-size: 16px;
+        font-family: "Fredoka";
+        padding: 5px;
+    }
+
+    .logButton {
+        margin: 25px;
+    }
+
+    .logRow {
+        display: grid;
+        align-items: baseline;
+
+        :active {
+            color: $pink;
+        }
+    }
+}

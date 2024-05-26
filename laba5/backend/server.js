@@ -3,12 +3,12 @@ const cors = require('cors');
 const mysql = require('mysql');
 const path = require('path');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs'); // Using bcryptjs
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
 
-const SECRET_KEY = '31072023'; // Your secret key
+const SECRET_KEY = '31072023';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,10 +28,8 @@ connection.connect((err) => {
     console.log('Connected to MySQL Database');
 });
 
-// Serve static files from the "src/photo_for_db" directory
 app.use('/photos', express.static(path.join(__dirname, '../src/photo_for_db')));
 
-// Get goods data
 app.get('/data', (req, res) => {
     const query = `
         SELECT good.good_id, good.good_name, good.good_price, good.good_type, photo.photo_path
@@ -48,12 +46,52 @@ app.get('/data', (req, res) => {
     });
 });
 
-// User registration
+app.get('/sizes', (req, res) => {
+    const query = `
+        SELECT size.size_id, size.size_name, size.size_price FROM size
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+app.get('/decors', (req, res) => {
+    const query = `
+        SELECT decor.decor_id, decor.decor_name, decor.decor_price FROM decor
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+app.get('/tastes', (req, res) => {
+    const query = `
+        SELECT taste.taste_id, taste.taste_name, taste.taste_price FROM taste
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err.message);
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
+});
+
 app.post('/register', async (req, res) => {
     const { user_login, user_password, user_mail, user_phone } = req.body;
+    console.log('Registration request received:', req.body);
     try {
         const hashedPassword = await bcrypt.hash(user_password, 10);
-        console.log('Hashed password during registration:', hashedPassword); // Log the hashed password
+        console.log('Hashed password during registration:', hashedPassword);
 
         const query = 'INSERT INTO user (user_login, user_password, user_mail, user_phone) VALUES (?, ?, ?, ?)';
         connection.query(query, [user_login, hashedPassword, user_mail, user_phone], (err, results) => {
@@ -62,6 +100,7 @@ app.post('/register', async (req, res) => {
                 res.status(500).send('Server error: ' + err.message);
                 return;
             }
+            console.log('User registered successfully:', results);
             res.status(201).send('User registered');
         });
     } catch (error) {
@@ -70,9 +109,9 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// User login
 app.post('/login', (req, res) => {
     const { user_login, user_password } = req.body;
+    console.log('Login request received:', req.body);
 
     const query = 'SELECT * FROM user WHERE user_login = ?';
     connection.query(query, [user_login], async (err, results) => {
@@ -89,14 +128,14 @@ app.post('/login', (req, res) => {
         }
 
         const user = results[0];
-        console.log('User found:', user); // Log the user found in the database
+        console.log('User found:', user);
 
         try {
-            console.log('Password entered:', user_password); // Log the entered password
-            console.log('Hashed password from DB:', user.user_password); // Log the hashed password from DB
+            console.log('Password entered:', user_password);
+            console.log('Hashed password from DB:', user.user_password);
 
             const isValidPassword = await bcrypt.compare(user_password, user.user_password);
-            console.log('Password comparison result:', isValidPassword); // Log the result of password comparison
+            console.log('Password comparison result:', isValidPassword);
 
             if (!isValidPassword) {
                 console.error('Invalid username or password: Incorrect password');
@@ -105,6 +144,7 @@ app.post('/login', (req, res) => {
             }
 
             const token = jwt.sign({ userId: user.user_id }, SECRET_KEY, { expiresIn: '1h' });
+            console.log('Token generated:', token);
             res.json({ token });
         } catch (error) {
             console.error('Error comparing passwords:', error.message);
@@ -113,7 +153,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Middleware to authenticate user
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -131,13 +170,6 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// Example of a protected route
-app.get('/protected', authenticateToken, (req, res) => {
-    res.send('This is a protected route');
-});
-
-
-// Fetch logged-in user information
 app.get('/user', authenticateToken, (req, res) => {
     const userId = req.user.userId;
 
@@ -159,8 +191,22 @@ app.get('/user', authenticateToken, (req, res) => {
     });
 });
 
+app.put('/user', authenticateToken, (req, res) => {
+    const userId = req.user.userId;
+    const { user_mail, user_phone } = req.body;
 
+    const query = 'UPDATE user SET user_mail = ?, user_phone = ? WHERE user_id = ?';
+    connection.query(query, [user_mail, user_phone, userId], (err, results) => {
+        if (err) {
+            console.error('Error updating user:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
 
+        console.log('User updated successfully:', results);
+        res.status(200).send('User updated');
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

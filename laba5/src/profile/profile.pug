@@ -9,5 +9,7 @@ html(lang="en")
     script(src="profile.js")
   body 
     include ../header.pug 
-    include profile_content.pug 
+    .profile-container
+      include profile_content.pug 
+      include profile_login_register.pug 
     include ../footer.pug

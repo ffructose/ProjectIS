@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-const password = '0000'; // The password to hash and compare
+const password = '2004'; // The password to hash and compare
 
 // Step 1: Hash the password
 bcrypt.hash(password, 10, (err, hashedPassword) => {

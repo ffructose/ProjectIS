@@ -11,11 +11,14 @@ import './scss/aboutus_content.scss'
 import './scss/liked_content.scss'
 import './scss/profile_content.scss'
 import './scss/cart_content.scss'
+import './scss/logreg.scss'
 
 //---------------JAVASCRIPT---------------//
 import './custom/custom.js';  
 import './catalogue/catalogue.js';  
 import './profile/profile.js'; 
+import './profile/login.js'; 
+import './profile/register.js'; 
 
 import { loadProducts } from './catalogue/catalogue';
 

@@ -1,5 +1,5 @@
 let currentIndex = 0;
-const productsPerPage = 9;
+const productsPerPage = 6;
 let goods = []; // Array to store fetched products
 
 

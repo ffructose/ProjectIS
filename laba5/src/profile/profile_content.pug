@@ -1,26 +1,27 @@
-a(name="main")
-main 
-    img(src=require('../photo/header-wave.svg') alt="Header Wave").headerWaveImg 
-    .profile-box
+.profile-content.hidden
+    a(name="main")
+    main 
+        img(src=require('../photo/header-wave.svg') alt="Header Wave").headerWaveImg 
+        .profile-box
+            .content
+                .title-text YOUR ACCOUNT
+                .profile-picture 
+                    img(src=require('../photo/profilePhoto.jpg')  alt="YourPhoto")
+                .profile-info 
+                    span.name Name:
+                    span.user-name 
 
-        .content
-            .title-text YOUR ACCOUNT
+                    span.mail Mail:
+                    span.user-mail 
+                    input(type="email" id="edit_user_mail" name="user_mail" class="hidden")
 
-            .profile-picture 
-                img(src=require('../photo/profilePhoto.jpg')  alt="YourPhoto")
-            .profile-info 
-                span.name Name:
-                span.user-name 
+                    span.num Number:
+                    span.user-num 
+                    input(type="text" id="edit_user_phone" name="user_phone" class="hidden")
+                    form#editProfileForm.hidden
+                        button(type="submit").myButton Save
+                        button(type="button" class="cancel-edit-button").myButton Cancel
+                button.edit-button.myButton Edit
+                button.forgot-button.myButton Forgot Password
+                button.delete-button.myButton Logout
 
-                span.mail Mail:
-                span.user-mail 
-
-                span.num Number:
-                span.user-num 
-
-            button.edit-button.myButton Edit
-            button.forgot-button.myButton Forgot Password
-            button.delete-button.myButton Delete Account
-
-    script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
-    script(src="profile.js")
