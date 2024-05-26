@@ -194,6 +194,32 @@ function updateTotalPrice() {
 
 function proceedToCheckout() {
     const orderBox = document.querySelector('.order-box');
+    const orderItemList = document.querySelector('.order-item-list');
+    const totalPriceElement = document.querySelector('.full-price');
+    let totalOrderPrice = 0;
+
+    orderItemList.innerHTML = ''; // Clear the current order list
+
+    document.querySelectorAll('.cart-item').forEach(itemElement => {
+        const goodName = itemElement.querySelector('.item-name').textContent;
+        const quantity = parseInt(itemElement.querySelector('.item-amount').value, 10);
+        const itemPrice = parseFloat(itemElement.dataset.goodPrice) * quantity;
+
+        const orderItemElement = document.createElement('div');
+        orderItemElement.classList.add('order-item');
+
+        orderItemElement.innerHTML = `
+            <span class="name">${goodName}</span>
+            <span class="amount">${quantity}</span>
+            <span class="price">₴${itemPrice.toFixed(2)}</span>
+        `;
+
+        orderItemList.appendChild(orderItemElement);
+        totalOrderPrice += itemPrice;
+    });
+
+    totalPriceElement.textContent = `₴${totalOrderPrice.toFixed(2)}`;
+
     const token = localStorage.getItem('token');
     if (token) {
         axios.get('http://localhost:3000/user', {
@@ -221,3 +247,4 @@ function closeOrderBox() {
     document.body.classList.remove('inactive');
     orderBox.classList.remove('show');
 }
+
