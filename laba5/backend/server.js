@@ -46,12 +46,8 @@ app.get('/data', (req, res) => {
     });
 });
 
-
-
 app.get('/sizes', (req, res) => {
-    const query = `
-        SELECT size.size_id, size.size_name, size.size_price FROM size
-    `;
+    const query = `SELECT size.size_id, size.size_name, size.size_price FROM size`;
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Error executing query:', err.message);
@@ -63,9 +59,7 @@ app.get('/sizes', (req, res) => {
 });
 
 app.get('/decors', (req, res) => {
-    const query = `
-        SELECT decor.decor_id, decor.decor_name, decor.decor_price FROM decor
-    `;
+    const query = `SELECT decor.decor_id, decor.decor_name, decor.decor_price FROM decor`;
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Error executing query:', err.message);
@@ -77,9 +71,7 @@ app.get('/decors', (req, res) => {
 });
 
 app.get('/tastes', (req, res) => {
-    const query = `
-        SELECT taste.taste_id, taste.taste_name, taste.taste_price FROM taste
-    `;
+    const query = `SELECT taste.taste_id, taste.taste_name, taste.taste_price FROM taste`;
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Error executing query:', err.message);
@@ -212,8 +204,6 @@ app.put('/user', authenticateToken, (req, res) => {
     });
 });
 
-
-
 // Add to cart
 app.post('/add-to-cart', authenticateToken, (req, res) => {
     const userId = req.user.userId;
@@ -303,7 +293,6 @@ app.get('/cart', authenticateToken, (req, res) => {
     });
 });
 
-
 // Update cart item quantity
 app.put('/cart', authenticateToken, (req, res) => {
     const userId = req.user.userId;
@@ -346,7 +335,6 @@ app.delete('/cart', authenticateToken, (req, res) => {
     });
 });
 
-
 // Like a product
 app.post('/like', authenticateToken, (req, res) => {
     const userId = req.user.userId;
@@ -379,8 +367,6 @@ app.post('/unlike', authenticateToken, (req, res) => {
     });
 });
 
-
-
 // Get liked products
 app.get('/liked', authenticateToken, (req, res) => {
     const userId = req.user.userId;
@@ -402,7 +388,6 @@ app.get('/liked', authenticateToken, (req, res) => {
         res.json(results);
     });
 });
-
 
 app.get('/types', (req, res) => {
     const query = 'SELECT type_id, type_name FROM type';
@@ -438,62 +423,66 @@ app.get('/product/:id', (req, res) => {
     });
 });
 
-// Ensure this is present in your server.js
-app.post('/submit-order', async (req, res) => {
-    const { user_login, user_phone, user_mail, cartItems, isGuest } = req.body;
-
-    if (isGuest) {
-        // Handle guest user order submission
-        const connection = await mysql.createConnection(dbConfig);
-
-        try {
-            const [orderResult] = await connection.execute(
-                'INSERT INTO orders (order_status, user_login, user_phone, user_mail) VALUES (?, ?, ?, ?)',
-                ['beingProcessed', user_login, user_phone, user_mail]
-            );
-
-            const orderId = orderResult.insertId;
-
-            for (const item of cartItems) {
-                await connection.execute(
-                    'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, ?)',
-                    [orderId, item.good_id, item.quantity]
-                );
+app.post('/submit-order', (req, res) => {
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+    if (token) {
+        jwt.verify(token, SECRET_KEY, (err, user) => {
+            if (err) {
+                return res.status(403).send('Invalid token');
             }
-
-            res.status(200).send('Order submitted and cart cleared');
-        } catch (err) {
-            console.error('Error processing guest order:', err.message);
-            res.status(500).send('Server error: ' + err.message);
-        } finally {
-            await connection.end();
-        }
+            const userId = user.userId;
+            processLoggedInOrder(userId, res);
+        });
     } else {
-        // Handle logged-in user order submission
-        const userId = req.user.userId;
-
-        try {
-            const connection = mysql.createConnection(dbConfig);
-
-            await connection.execute(
-                'UPDATE orders SET order_status = "beingProcessed" WHERE user_id = ? AND order_status = "inCart"',
-                [userId]
-            );
-
-            await connection.execute(
-                'DELETE FROM order_items WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ? AND order_status = "beingProcessed")',
-                [userId]
-            );
-
-            res.status(200).send('Order submitted and cart cleared');
-        } catch (err) {
-            console.error('Error processing order:', err.message);
-            res.status(500).send('Server error: ' + err.message);
-        }
+        const { user_login, user_phone, user_mail, cartItems } = req.body;
+        processGuestOrder(user_login, user_phone, user_mail, cartItems, res);
     }
 });
 
+function processLoggedInOrder(userId, res) {
+    const updateOrderQuery = 'UPDATE orders SET order_status = "beingProcessed" WHERE user_id = ? AND order_status = "inCart"';
+    connection.query(updateOrderQuery, [userId], (err, results) => {
+        if (err) {
+            console.error('Error updating order status:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
 
+        const deleteOrderItemsQuery = 'DELETE FROM order_items WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ? AND order_status = "beingProcessed")';
+        connection.query(deleteOrderItemsQuery, [userId], (err, results) => {
+            if (err) {
+                console.error('Error clearing cart items:', err.message);
+                res.status(500).send('Server error: ' + err.message);
+                return;
+            }
+
+            res.status(200).send('Order submitted and cart cleared');
+        });
+    });
+}
+
+function processGuestOrder(user_login, user_phone, user_mail, cartItems, res) {
+    const createOrderQuery = 'INSERT INTO orders (user_id, order_status) VALUES (NULL, "beingProcessed")';
+    connection.query(createOrderQuery, [], (err, results) => {
+        if (err) {
+            console.error('Error creating order:', err.message);
+            res.status(500).send('Server error: ' + err.message);
+            return;
+        }
+        const orderId = results.insertId;
+        for (const item of cartItems) {
+            const insertItemQuery = 'INSERT INTO order_items (order_id, good_id, order_item_quantity) VALUES (?, ?, ?)';
+            connection.query(insertItemQuery, [orderId, item.good_id, item.quantity], (err, insertResults) => {
+                if (err) {
+                    console.error('Error adding order item:', err.message);
+                    res.status(500).send('Server error: ' + err.message);
+                    return;
+                }
+            });
+        }
+        res.status(200).send('Order submitted and cart cleared');
+    });
+}
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

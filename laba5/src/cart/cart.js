@@ -318,7 +318,6 @@ async function submitOrder(event) {
         user_phone: document.querySelector('.user-info-box input[name="phone"]').value.trim(),
         user_mail: document.querySelector('.user-info-box input[name="mail"]').value.trim(),
         cartItems,
-        isGuest: !token
     };
 
     try {
