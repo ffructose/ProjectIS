@@ -1,17 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-const mysql = require('mysql');
-const path = require('path');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const app = express();
-const port = 3000;
+const express = require('express'); // фреймворк для створення веб-додатків.
+const cors = require('cors'); //механізм доступу до ресурсів з різних доменів.
+const mysql = require('mysql'); //підключення до бази даних MySQL.
+const path = require('path'); // для роботи з шляхами файлів.
+const bodyParser = require('body-parser'); //парсер JSON для аналізу вхідних даних запитів.
+const bcrypt = require('bcryptjs'); //бібліотека для хешування паролів.
+const jwt = require('jsonwebtoken'); //для генерації та перевірки JWT-токенів.
+const app = express(); //об'єкт  Express.
+const port = 3000; 
 
-const SECRET_KEY = '31072023';
+const SECRET_KEY = '31072023'; //секретний ключ для генерації JWT-токенів.
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors()); // дозволяє крос-доменні запити.
+app.use(bodyParser.json());//дозволяє аналізувати JSON в тілі запитів.
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -20,6 +20,7 @@ const connection = mysql.createConnection({
     database: 'yumico'
 });
 
+// встановлює підключення до бази даних та виводить повідомлення про успішне підключення або помилку.
 connection.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err.message);
@@ -484,6 +485,7 @@ function processGuestOrder(user_login, user_phone, user_mail, cartItems, res) {
     });
 }
 
+//Запускає сервер на вказаному порту (3000).
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
